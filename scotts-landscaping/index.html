@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scott's Landscaping, LLC | Louisville, KY</title>
+  <meta name="description" content="Custom landscape design, installation, and architectural lighting in Louisville, KY since 1999. Owner-operated by Scott Rief, University of Kentucky Landscape Architecture graduate.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-950: #0a1a04;
+      --green-900: #1b3a0d;
+      --green-800: #2d5c1a;
+      --green-700: #3d7222;
+      --green-600: #4e8b2c;
+      --green-500: #5fa535;
+      --green-400: #7ec04f;
+      --green-300: #9fd470;
+      --green-200: #c5e8a8;
+      --green-100: #e4f4d4;
+      --green-50:  #f3fae9;
+
+      --surface-0: #fafdf7;
+      --surface-1: #f0f7e9;
+
+      --text-primary:   #0d1f06;
+      --text-secondary: #3d5530;
+      --text-muted:     #6b8560;
+
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 32px;
+
+      --shadow-md: 0 4px 16px rgba(13,31,6,.10), 0 2px 8px rgba(13,31,6,.06);
+      --shadow-lg: 0 12px 40px rgba(13,31,6,.14), 0 4px 16px rgba(13,31,6,.08);
+      --shadow-xl: 0 24px 64px rgba(13,31,6,.16), 0 8px 24px rgba(13,31,6,.10);
+
+      --ease: cubic-bezier(.4,0,.2,1);
+      --fast: 150ms;
+      --base: 250ms;
+      --slow: 400ms;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--surface-0);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2.5rem); }
+    .section-pad { padding: clamp(4rem, 8vw, 8rem) 0; }
+    .overline { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+
+    /* Scroll reveal */
+    .r { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+    .r.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .1s; }
+    .d2 { transition-delay: .2s; }
+    .d3 { transition-delay: .3s; }
+    .d4 { transition-delay: .4s; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.25rem 0;
+      transition: background var(--base) var(--ease), box-shadow var(--base) var(--ease), padding var(--base) var(--ease);
+    }
+    .nav.scrolled {
+      background: rgba(250,253,247,.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(13,31,6,.09);
+      padding: .875rem 0;
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: .625rem; }
+    .nav-logo-mark {
+      width: 36px; height: 36px;
+      background: var(--green-800);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+    }
+    .nav-logo-text { font-family: 'DM Serif Display', serif; font-size: 1.125rem; color: var(--green-900); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: .9375rem; font-weight: 500; color: var(--text-secondary); transition: color var(--fast) var(--ease); }
+    .nav-links a:hover { color: var(--green-800); }
+    .nav-cta {
+      background: var(--green-800) !important;
+      color: #fff !important;
+      padding: .625rem 1.25rem;
+      border-radius: var(--radius-md);
+      transition: background var(--fast) var(--ease), transform var(--fast) var(--ease) !important;
+    }
+    .nav-cta:hover { background: var(--green-900) !important; transform: translateY(-1px); }
+    .nav-burger { display: none; background: none; border: none; cursor: pointer; padding: .5rem; color: var(--text-primary); }
+
+    /* ── HERO ── */
+    .hero { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=80') center/cover no-repeat;
+      transform: scale(1.06);
+      will-change: transform;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(10,26,4,.85) 0%, rgba(29,58,13,.65) 50%, rgba(10,26,4,.4) 100%);
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 740px; }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 100px;
+      padding: .375rem 1rem;
+      color: var(--green-200);
+      backdrop-filter: blur(8px);
+      margin-bottom: 2rem;
+    }
+    .hero-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-400); }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1.04;
+      letter-spacing: -.02em;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--green-300); }
+    .hero-sub { font-size: 1.125rem; color: rgba(255,255,255,.78); max-width: 520px; line-height: 1.7; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--green-500); color: #fff;
+      padding: .875rem 1.75rem; border-radius: var(--radius-md);
+      font-weight: 600; font-size: .9375rem;
+      box-shadow: 0 4px 20px rgba(95,165,53,.35);
+      transition: background var(--fast) var(--ease), transform var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
+    }
+    .btn-primary:hover { background: var(--green-400); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(95,165,53,.45); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: .5rem;
+      color: rgba(255,255,255,.82);
+      padding: .875rem 1.5rem; border-radius: var(--radius-md);
+      font-weight: 500; font-size: .9375rem;
+      border: 1px solid rgba(255,255,255,.24);
+      transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.4); }
+
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      color: rgba(255,255,255,.45); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase;
+    }
+    .hero-scroll-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.5), transparent);
+      animation: pulse-line 2s ease-in-out infinite;
+    }
+    @keyframes pulse-line { 0%,100% { opacity: .4; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(.6); } }
+
+    .hero-stats {
+      position: absolute; bottom: 3rem; right: clamp(1rem,4vw,2.5rem);
+      z-index: 2; display: flex; flex-direction: column; gap: 1rem;
+    }
+    .hero-stat {
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem; text-align: right;
+    }
+    .hero-stat-n { font-family: 'DM Serif Display', serif; font-size: 2rem; color: #fff; line-height: 1; }
+    .hero-stat-l { font-size: .72rem; color: rgba(255,255,255,.55); margin-top: .25rem; letter-spacing: .04em; }
+
+    /* ── SERVICES ── */
+    .services { background: #fff; }
+    .section-head { margin-bottom: clamp(2.5rem,5vw,4rem); }
+    .section-head .overline { color: var(--green-700); margin-bottom: .625rem; }
+    .section-head h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem,4vw,3.25rem);
+      line-height: 1.1; letter-spacing: -.01em;
+      margin-bottom: .875rem;
+    }
+    .section-head p { font-size: 1.0625rem; color: var(--text-secondary); max-width: 520px; line-height: 1.7; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 340px 340px;
+      gap: 1.25rem;
+    }
+    .svc-card {
+      position: relative; border-radius: var(--radius-lg); overflow: hidden;
+      transition: transform var(--base) var(--ease), box-shadow var(--base) var(--ease);
+    }
+    .svc-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); }
+    .svc-card-featured { grid-row: 1 / 3; }
+    .svc-card img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      transition: transform .6s var(--ease);
+    }
+    .svc-card:hover img { transform: scale(1.04); }
+    .svc-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,26,4,.92) 0%, rgba(10,26,4,.28) 55%, transparent 100%); }
+    .svc-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; }
+    .svc-badge {
+      display: inline-block;
+      background: var(--green-500); color: #fff;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      padding: .25rem .75rem; border-radius: 100px; margin-bottom: .875rem;
+    }
+    .svc-icon {
+      width: 42px; height: 42px;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      color: var(--green-300); margin-bottom: .875rem; backdrop-filter: blur(4px);
+    }
+    .svc-card-body h3 { font-family: 'DM Serif Display', serif; color: #fff; margin-bottom: .5rem; }
+    .svc-card-featured .svc-card-body h3 { font-size: 1.875rem; }
+    .svc-card-body h3:not(.svc-card-featured .svc-card-body h3) { font-size: 1.375rem; }
+    .svc-card-body p { font-size: .9rem; color: rgba(255,255,255,.72); line-height: 1.65; }
+
+    /* ── TRUST BAND ── */
+    .trust { background: var(--green-900); padding: clamp(3rem,5vw,4.5rem) 0; }
+    .trust-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
+    .trust-item { text-align: center; }
+    .trust-n { font-family: 'DM Serif Display', serif; font-size: clamp(2rem,4vw,3rem); color: var(--green-300); line-height: 1; }
+    .trust-l { font-size: .8125rem; color: rgba(255,255,255,.55); margin-top: .375rem; line-height: 1.45; }
+
+    /* ── ABOUT ── */
+    .about { background: var(--surface-1); }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem,6vw,6rem); align-items: center; }
+    .about-img-wrap { position: relative; }
+    .about-img {
+      width: 100%; border-radius: var(--radius-xl); aspect-ratio: 4/5;
+      object-fit: cover; box-shadow: var(--shadow-xl);
+    }
+    .about-badge {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      background: var(--green-800); color: #fff;
+      border-radius: var(--radius-lg); padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .about-badge-n { font-family: 'DM Serif Display', serif; font-size: 2.5rem; line-height: 1; }
+    .about-badge-l { font-size: .8rem; opacity: .75; margin-top: .25rem; }
+    .about-content .overline { color: var(--green-700); margin-bottom: .625rem; }
+    .about-content h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem,4vw,3.25rem);
+      line-height: 1.1; letter-spacing: -.01em;
+      margin-bottom: 1.125rem;
+    }
+    .about-content .lead { font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+    .about-content .body { font-size: .9375rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; }
+    .creds { display: flex; flex-direction: column; gap: .875rem; margin-bottom: 2rem; }
+    .cred { display: flex; align-items: center; gap: .75rem; }
+    .cred-icon {
+      width: 36px; height: 36px; background: var(--green-100); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; color: var(--green-700); flex-shrink: 0;
+    }
+    .cred span { font-size: .9375rem; font-weight: 500; color: var(--text-secondary); }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--green-900); color: #fff;
+      padding: .875rem 1.75rem; border-radius: var(--radius-md);
+      font-weight: 600; font-size: .9375rem;
+      transition: background var(--fast) var(--ease), transform var(--fast) var(--ease);
+    }
+    .btn-dark:hover { background: var(--green-800); transform: translateY(-2px); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: #fff; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+    .testi-card {
+      background: var(--surface-1); border-radius: var(--radius-lg);
+      padding: 2rem; border: 1px solid var(--green-100);
+      transition: transform var(--base) var(--ease), box-shadow var(--base) var(--ease);
+    }
+    .testi-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .testi-stars { color: #f5b730; font-size: .85rem; letter-spacing: .06em; margin-bottom: 1rem; }
+    .testi-text { font-size: .9375rem; color: var(--text-secondary); line-height: 1.7; font-style: italic; margin-bottom: 1.5rem; }
+    .testi-author { display: flex; align-items: center; gap: .75rem; }
+    .testi-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--green-200); color: var(--green-800);
+      font-family: 'DM Serif Display', serif; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .testi-name { font-weight: 600; font-size: .9375rem; }
+    .testi-loc { font-size: .8125rem; color: var(--text-muted); }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--surface-1); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem,6vw,6rem); }
+    .contact-info .overline { color: var(--green-700); margin-bottom: .625rem; }
+    .contact-info h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem,4vw,3.25rem);
+      line-height: 1.1; letter-spacing: -.01em;
+      margin-bottom: 1.125rem;
+    }
+    .contact-info .lead { font-size: 1.0625rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 2rem; }
+    .contact-details { display: flex; flex-direction: column; gap: 1.25rem; }
+    .contact-detail { display: flex; align-items: center; gap: 1rem; }
+    .contact-icon {
+      width: 44px; height: 44px; background: var(--green-100); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; color: var(--green-700); flex-shrink: 0;
+    }
+    .contact-label { font-size: .72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .125rem; }
+    .contact-value { font-size: .9375rem; font-weight: 600; color: var(--text-primary); }
+
+    .contact-form {
+      background: #fff; border-radius: var(--radius-xl); padding: 2.5rem;
+      box-shadow: var(--shadow-md); border: 1px solid var(--green-100);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .fg { margin-bottom: 1.25rem; }
+    label { display: block; font-size: .875rem; font-weight: 600; color: var(--text-secondary); margin-bottom: .375rem; }
+    input, textarea {
+      width: 100%; padding: .75rem 1rem;
+      border: 1.5px solid var(--green-100); border-radius: var(--radius-md);
+      font-family: 'DM Sans', sans-serif; font-size: .9375rem;
+      color: var(--text-primary); background: var(--surface-0);
+      outline: none; transition: border-color var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
+    }
+    input:focus, textarea:focus { border-color: var(--green-500); box-shadow: 0 0 0 3px rgba(95,165,53,.15); }
+    textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      width: 100%; padding: .9375rem; margin-top: .375rem;
+      background: var(--green-800); color: #fff; border: none;
+      border-radius: var(--radius-md); font-family: 'DM Sans', sans-serif;
+      font-size: 1rem; font-weight: 600; cursor: pointer;
+      transition: background var(--fast) var(--ease), transform var(--fast) var(--ease);
+    }
+    .form-submit:hover { background: var(--green-900); transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--green-950); padding: clamp(3rem,5vw,4.5rem) 0 1.5rem; }
+    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-desc { font-size: .875rem; color: rgba(255,255,255,.45); line-height: 1.7; max-width: 280px; margin-top: 1rem; }
+    .footer-col-title { font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 1.25rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .footer-links a { font-size: .9375rem; color: rgba(255,255,255,.55); transition: color var(--fast) var(--ease); }
+    .footer-links a:hover { color: var(--green-300); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { font-size: .8125rem; color: rgba(255,255,255,.3); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: 1fr; grid-template-rows: 420px 300px 300px; }
+      .svc-card-featured { grid-row: auto; }
+      .trust-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-burger { display: block; }
+      .hero-stats { display: none; }
+      .about-inner { grid-template-columns: 1fr; }
+      .about-badge { right: 1rem; bottom: -1rem; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .r { opacity: 1; transform: none; }
+      .hero-scroll-line { animation: none; }
+      * { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#home" class="nav-logo">
+          <div class="nav-logo-mark">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22V12"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><path d="M12 2a5 5 0 0 1 5 5c0 5-5 9-5 9s-5-4-5-9a5 5 0 0 1 5-5z"/>
+            </svg>
+          </div>
+          <span class="nav-logo-text">Scott's Landscaping</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+        </ul>
+        <button class="nav-burger" id="burger" aria-label="Open menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-pill r">
+          <span class="hero-pill-dot"></span>
+          <span class="overline" style="color:inherit;">Louisville, KY &nbsp;·&nbsp; Est. 1999</span>
+        </div>
+        <h1 class="r d1">
+          Landscapes<br>crafted with <em>intention</em>
+        </h1>
+        <p class="hero-sub r d2">
+          Custom design, expert installation, and architectural lighting by Scott Rief. 25 years of turning Louisville properties into living works of art.
+        </p>
+        <div class="hero-actions r d3">
+          <a href="#contact" class="btn-primary">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Request a Quote
+          </a>
+          <a href="#services" class="btn-ghost">
+            View Services
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+    <div class="hero-stats r">
+      <div class="hero-stat">
+        <div class="hero-stat-n">25+</div>
+        <div class="hero-stat-l">Years in business</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">A+</div>
+        <div class="hero-stat-l">BBB Rating</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services section-pad" id="services">
+    <div class="container">
+      <div class="section-head r">
+        <p class="overline">What we do</p>
+        <h2>Three disciplines,<br>one seamless vision</h2>
+        <p>Every project begins with a conversation and ends with a landscape that reflects who you are.</p>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card svc-card-featured r">
+          <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=900&q=80" alt="Custom landscape design with stone pathway and lush plantings">
+          <div class="svc-card-overlay"></div>
+          <div class="svc-card-body">
+            <div class="svc-badge">Signature Service</div>
+            <div class="svc-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <h3>Custom Landscape Design</h3>
+            <p>Every design drawn personally by Scott. Hand-selected, locally sourced plant materials chosen to thrive in your specific Louisville environment.</p>
+          </div>
+        </div>
+        <div class="svc-card r d1">
+          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80" alt="Professional landscape installation with native plants">
+          <div class="svc-card-overlay"></div>
+          <div class="svc-card-body">
+            <div class="svc-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <h3>Expert Installation</h3>
+            <p>Scott is always on site. Not a crew manager. The designer and the installer are the same person.</p>
+          </div>
+        </div>
+        <div class="svc-card r d2">
+          <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=900&q=80" alt="Architectural outdoor lighting on residential landscape">
+          <div class="svc-card-overlay"></div>
+          <div class="svc-card-body">
+            <div class="svc-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </div>
+            <h3>Architectural Lighting</h3>
+            <p>Precision lighting that extends the life of your landscape into every evening, beautifully.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAND -->
+  <div class="trust">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item r"><div class="trust-n">25+</div><div class="trust-l">Years of experience</div></div>
+        <div class="trust-item r d1"><div class="trust-n">12+</div><div class="trust-l">Angie's List Super Service Awards</div></div>
+        <div class="trust-item r d2"><div class="trust-n">A+</div><div class="trust-l">BBB Accredited Business</div></div>
+        <div class="trust-item r d3"><div class="trust-n">UK</div><div class="trust-l">Landscape Architecture Graduate</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about section-pad" id="about">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-img-wrap r">
+          <img class="about-img" src="https://images.unsplash.com/photo-1510881272729-974ad4dabc0a?w=800&q=80" alt="Louisville landscape garden by Scott Rief">
+          <div class="about-badge">
+            <div class="about-badge-n">1999</div>
+            <div class="about-badge-l">Established in Louisville</div>
+          </div>
+        </div>
+        <div class="about-content r d1">
+          <p class="overline">About Scott</p>
+          <h2>The designer is always on site</h2>
+          <p class="lead">Scott Rief has been shaping Louisville's finest properties since 1999. A University of Kentucky Landscape Architecture graduate and longtime member of the Louisville Nursery Association.</p>
+          <p class="body">Unlike larger firms that design in an office and delegate to crews, Scott handles every project personally. From the first sketch to the final planted specimen, you have one person who is fully accountable for every result.</p>
+          <div class="creds">
+            <div class="cred">
+              <div class="cred-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <span>Angie's List Super Service Award every year since 2012</span>
+            </div>
+            <div class="cred">
+              <div class="cred-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <span>A+ BBB rating with full liability insurance coverage</span>
+            </div>
+            <div class="cred">
+              <div class="cred-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <span>Hand-selected, locally sourced plant materials only</span>
+            </div>
+            <div class="cred">
+              <div class="cred-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <span>University of Kentucky Landscape Architecture</span>
+            </div>
+          </div>
+          <a href="tel:5028214542" class="btn-dark">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call (502) 821-4542
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials section-pad" id="testimonials">
+    <div class="container">
+      <div class="section-head r">
+        <p class="overline">Client feedback</p>
+        <h2>What Louisville homeowners say</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card r">
+          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testi-text">"Scott transformed our backyard into something we never thought possible. He was on site every single day and the final result is beyond anything we imagined."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">M</div>
+            <div><div class="testi-name">Margaret T.</div><div class="testi-loc">Louisville, KY</div></div>
+          </div>
+        </div>
+        <div class="testi-card r d1">
+          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testi-text">"The outdoor lighting alone was worth every penny. Our property looks completely different at night now. Scott really understands how light and landscape work together."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">D</div>
+            <div><div class="testi-name">David R.</div><div class="testi-loc">Louisville, KY</div></div>
+          </div>
+        </div>
+        <div class="testi-card r d2">
+          <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testi-text">"We've used Scott for three projects over eight years. He remembers every plant he put in, is always reachable, and the quality has never wavered. Truly rare to find."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">K</div>
+            <div><div class="testi-name">Karen W.</div><div class="testi-loc">Louisville, KY</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact section-pad" id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="contact-info r">
+          <p class="overline">Get in touch</p>
+          <h2>Start your project</h2>
+          <p class="lead">Tell us what you're envisioning. Scott responds personally within one business day.</p>
+          <div class="contact-details">
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div><div class="contact-label">Phone</div><div class="contact-value">(502) 821-4542</div></div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div><div class="contact-label">Service Area</div><div class="contact-value">Louisville, KY and surrounding areas</div></div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <div><div class="contact-label">Response Time</div><div class="contact-value">Within one business day</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form r d1">
+          <form>
+            <div class="form-row">
+              <div class="fg"><label>First name</label><input type="text" placeholder="Jane" autocomplete="given-name"></div>
+              <div class="fg"><label>Last name</label><input type="text" placeholder="Smith" autocomplete="family-name"></div>
+            </div>
+            <div class="fg"><label>Phone</label><input type="tel" placeholder="(502) 000-0000" autocomplete="tel"></div>
+            <div class="fg"><label>Email</label><input type="email" placeholder="jane@example.com" autocomplete="email"></div>
+            <div class="fg">
+              <label>What are you looking for?</label>
+              <textarea placeholder="Tell us about your project. Design, installation, lighting, or all three?"></textarea>
+            </div>
+            <button type="submit" class="form-submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="nav-logo">
+            <div class="nav-logo-mark">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22V12"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><path d="M12 2a5 5 0 0 1 5 5c0 5-5 9-5 9s-5-4-5-9a5 5 0 0 1 5-5z"/>
+              </svg>
+            </div>
+            <span class="nav-logo-text">Scott's Landscaping</span>
+          </div>
+          <p class="footer-desc">Custom landscape design, installation, and architectural lighting in Louisville, KY since 1999.</p>
+        </div>
+        <div>
+          <p class="footer-col-title">Services</p>
+          <ul class="footer-links">
+            <li><a href="#services">Landscape Design</a></li>
+            <li><a href="#services">Installation</a></li>
+            <li><a href="#services">Outdoor Lighting</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">Company</p>
+          <ul class="footer-links">
+            <li><a href="#about">About Scott</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Scott's Landscaping, LLC. Louisville, KY. All rights reserved.</p>
+        <p>Licensed &amp; Fully Insured</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    const heroBg = document.getElementById('heroBg');
+
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      nav.classList.toggle('scrolled', y > 40);
+      if (y < window.innerHeight) {
+        heroBg.style.transform = `scale(1.06) translateY(${y * 0.28}px)`;
+      }
+    }, { passive: true });
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+    document.querySelectorAll('.r').forEach(el => io.observe(el));
+
+    document.getElementById('burger').addEventListener('click', () => {
+      const links = document.getElementById('navLinks');
+      const open = links.getAttribute('data-open') === '1';
+      if (open) {
+        links.removeAttribute('style');
+        links.removeAttribute('data-open');
+      } else {
+        Object.assign(links.style, {
+          display: 'flex', flexDirection: 'column', position: 'absolute',
+          top: '100%', left: '0', right: '0',
+          background: 'rgba(250,253,247,.97)', backdropFilter: 'blur(14px)',
+          padding: '1.5rem 2rem', gap: '1.25rem',
+          boxShadow: '0 8px 24px rgba(0,0,0,.1)'
+        });
+        links.setAttribute('data-open', '1');
+      }
+    });
+  </script>
+</body>
+</html>
