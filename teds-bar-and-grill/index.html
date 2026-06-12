@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ted's Bar &amp; Grill | Best Wings in Harrisburg, PA</title>
+  <meta name="description" content="Ted's Bar &amp; Grill — home of the best wings in Harrisburg, PA. Homemade food, weekly events, catering, and two private dining rooms at 7300 Allentown Blvd.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black:       #0E0904;
+      --surface-0:   #1A1208;
+      --surface-1:   #231A0C;
+      --surface-2:   #2E2210;
+
+      --amber-900:   #6B3E03;
+      --amber-800:   #8B5206;
+      --amber-700:   #A8680A;
+      --amber:       #C8840D;
+      --amber-light: #E8A020;
+      --amber-50:    #FDF3DC;
+
+      --red:         #B83228;
+
+      --cream:       #F5EDD8;
+      --cream-dim:   #C8BA9C;
+      --muted:       #8A7A60;
+
+      --radius-sm:   6px;
+      --radius-md:   12px;
+      --radius-lg:   20px;
+      --radius-xl:   32px;
+
+      --shadow-amber: 0 4px 24px rgba(200,132,13,.25);
+      --shadow-lg:    0 16px 48px rgba(0,0,0,.5);
+      --shadow-xl:    0 32px 80px rgba(0,0,0,.6);
+
+      --ease: cubic-bezier(.4,0,.2,1);
+      --fast: 150ms;
+      --base: 260ms;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--surface-0);
+      color: var(--cream);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1rem,4vw,2.5rem); }
+    .section-pad { padding: clamp(4rem,8vw,7rem) 0; }
+
+    /* Scroll reveal */
+    .r { opacity: 0; transform: translateY(22px); transition: opacity .65s var(--ease), transform .65s var(--ease); }
+    .r.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .1s; }
+    .d2 { transition-delay: .2s; }
+    .d3 { transition-delay: .3s; }
+    .d4 { transition-delay: .4s; }
+
+    /* ── SECTION HEADERS ── */
+    .sh { margin-bottom: clamp(2.5rem,5vw,4rem); }
+    .sh .eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: .7rem; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: .625rem;
+    }
+    .sh h2 {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: clamp(2.25rem,5vw,3.75rem);
+      line-height: 1.05; letter-spacing: .01em;
+      text-transform: uppercase;
+    }
+    .sh p { font-size: 1.0625rem; color: var(--cream-dim); max-width: 540px; margin-top: .75rem; line-height: 1.7; }
+
+    /* ── BUTTONS ── */
+    .btn-amber {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--amber); color: var(--black);
+      padding: .875rem 1.875rem; border-radius: var(--radius-md);
+      font-family: 'Oswald', sans-serif; font-weight: 600;
+      font-size: 1rem; letter-spacing: .04em; text-transform: uppercase;
+      box-shadow: var(--shadow-amber);
+      transition: background var(--fast) var(--ease), transform var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
+    }
+    .btn-amber:hover { background: var(--amber-light); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(200,132,13,.4); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: .5rem;
+      color: var(--cream); border: 1.5px solid rgba(245,237,216,.25);
+      padding: .875rem 1.75rem; border-radius: var(--radius-md);
+      font-family: 'Oswald', sans-serif; font-weight: 500;
+      font-size: 1rem; letter-spacing: .04em; text-transform: uppercase;
+      transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease);
+    }
+    .btn-outline:hover { background: rgba(245,237,216,.08); border-color: rgba(245,237,216,.45); }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.25rem 0;
+      transition: background var(--base) var(--ease), box-shadow var(--base) var(--ease), padding var(--base) var(--ease);
+    }
+    .nav.scrolled {
+      background: rgba(14,9,4,.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(200,132,13,.15);
+      padding: .875rem 0;
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 1.375rem; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--amber);
+    }
+    .nav-logo span { color: var(--cream); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Oswald', sans-serif; font-weight: 500;
+      font-size: .875rem; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--cream-dim); transition: color var(--fast) var(--ease);
+    }
+    .nav-links a:hover { color: var(--amber); }
+    .nav-cta {
+      background: var(--amber) !important; color: var(--black) !important;
+      padding: .5rem 1.125rem; border-radius: var(--radius-sm);
+      transition: background var(--fast) var(--ease) !important;
+    }
+    .nav-cta:hover { background: var(--amber-light) !important; color: var(--black) !important; }
+    .nav-burger { display: none; background: none; border: none; cursor: pointer; padding: .5rem; color: var(--cream); }
+
+    /* ── HERO ── */
+    .hero { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1632158930341-46604b637a0f?w=1800&q=80') center/cover no-repeat;
+      transform: scale(1.06);
+      will-change: transform;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(10,6,2,.92) 0%, rgba(26,18,8,.8) 55%, rgba(10,6,2,.55) 100%);
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 760px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--amber); color: var(--black);
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: .7rem; letter-spacing: .16em; text-transform: uppercase;
+      padding: .375rem 1rem; border-radius: 100px;
+      margin-bottom: 1.75rem;
+    }
+    .hero h1 {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: clamp(3.5rem,9vw,7.5rem);
+      line-height: .95; letter-spacing: .02em; text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 .accent { color: var(--amber); }
+    .hero-sub {
+      font-size: 1.0625rem; color: var(--cream-dim);
+      max-width: 480px; line-height: 1.7; margin-bottom: 2.25rem;
+    }
+    .hero-sub strong { color: var(--cream); }
+    .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .hero-addr {
+      position: absolute; bottom: 2.5rem; left: clamp(1rem,4vw,2.5rem);
+      z-index: 2; display: flex; align-items: center; gap: .625rem;
+      color: var(--cream-dim); font-size: .8125rem;
+    }
+    .hero-addr svg { color: var(--amber); flex-shrink: 0; }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; right: clamp(1rem,4vw,2.5rem);
+      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      color: var(--muted); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+    }
+    .hero-scroll-line {
+      width: 1px; height: 44px;
+      background: linear-gradient(to bottom, var(--amber), transparent);
+      animation: scroll-pulse 2s ease-in-out infinite;
+    }
+    @keyframes scroll-pulse { 0%,100% { opacity: .4; } 50% { opacity: 1; } }
+
+    /* ── WINGS FEATURE ── */
+    .wings { background: var(--surface-1); }
+    .wings-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem,6vw,6rem); align-items: center;
+    }
+    .wings-img-wrap { position: relative; }
+    .wings-img {
+      width: 100%; border-radius: var(--radius-xl); aspect-ratio: 4/3;
+      object-fit: cover; box-shadow: var(--shadow-xl);
+    }
+    .wings-badge {
+      position: absolute; top: -1.25rem; right: -1.25rem;
+      background: var(--red); color: var(--cream);
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
+      padding: .5rem 1rem; border-radius: var(--radius-md);
+      box-shadow: 0 4px 16px rgba(184,50,40,.4);
+    }
+    .wings-content .eyebrow {
+      font-family: 'Oswald', sans-serif; font-size: .7rem; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--amber); margin-bottom: .625rem;
+    }
+    .wings-content h2 {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: clamp(2.25rem,5vw,3.5rem);
+      text-transform: uppercase; line-height: 1.05; margin-bottom: 1.25rem;
+    }
+    .wings-content p { font-size: 1rem; color: var(--cream-dim); line-height: 1.75; margin-bottom: 1rem; }
+    .wings-flavors { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0 2rem; }
+    .flavor-tag {
+      font-family: 'Oswald', sans-serif; font-size: .75rem; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      background: var(--surface-2); color: var(--amber);
+      border: 1px solid var(--amber-800); border-radius: 100px;
+      padding: .25rem .875rem;
+    }
+
+    /* ── MENU ── */
+    .menu { background: var(--black); }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      grid-template-rows: auto auto;
+      gap: 1.25rem;
+    }
+    .menu-card {
+      position: relative; border-radius: var(--radius-lg); overflow: hidden;
+      transition: transform var(--base) var(--ease), box-shadow var(--base) var(--ease);
+    }
+    .menu-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .menu-card-tall { grid-row: 1 / 3; }
+    .menu-card img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; transition: transform .6s var(--ease);
+    }
+    .menu-card:hover img { transform: scale(1.04); }
+    .menu-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,6,2,.95) 0%, rgba(10,6,2,.3) 60%, transparent 100%);
+    }
+    .menu-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.75rem; }
+    .menu-card-tag {
+      display: inline-block;
+      font-family: 'Oswald', sans-serif; font-size: .65rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      background: var(--amber); color: var(--black);
+      padding: .2rem .65rem; border-radius: 100px; margin-bottom: .75rem;
+    }
+    .menu-card h3 {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 1.5rem; text-transform: uppercase; color: var(--cream); margin-bottom: .375rem;
+    }
+    .menu-card-tall h3 { font-size: 2rem; }
+    .menu-card p { font-size: .875rem; color: rgba(245,237,216,.65); line-height: 1.6; }
+    .menu-card-mini { min-height: 200px; }
+
+    /* ── EVENTS ── */
+    .events { background: var(--surface-1); }
+    .events-list { display: flex; flex-direction: column; gap: 1px; }
+    .event-row {
+      display: grid; grid-template-columns: 140px 1fr auto;
+      align-items: center; gap: 2rem;
+      background: var(--surface-2);
+      border-radius: var(--radius-md); padding: 1.75rem 2rem;
+      border: 1px solid rgba(200,132,13,.08);
+      transition: border-color var(--base) var(--ease), background var(--base) var(--ease);
+    }
+    .event-row:hover { border-color: rgba(200,132,13,.25); background: var(--surface-1); }
+    .event-day { text-align: center; }
+    .event-day-name {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 1rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--amber);
+    }
+    .event-day-time { font-size: .8125rem; color: var(--muted); margin-top: .25rem; }
+    .event-divider { width: 1px; height: 48px; background: rgba(200,132,13,.15); flex-shrink: 0; }
+    .event-info h3 {
+      font-family: 'Oswald', sans-serif; font-weight: 600;
+      font-size: 1.25rem; text-transform: uppercase; color: var(--cream); margin-bottom: .25rem;
+    }
+    .event-info p { font-size: .875rem; color: var(--cream-dim); line-height: 1.6; }
+    .event-badge {
+      font-family: 'Oswald', sans-serif; font-size: .7rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      background: rgba(200,132,13,.12); color: var(--amber);
+      border: 1px solid rgba(200,132,13,.2);
+      padding: .375rem .875rem; border-radius: 100px; white-space: nowrap;
+    }
+
+    /* ── CATERING ── */
+    .catering { background: var(--black); }
+    .catering-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem,6vw,6rem); align-items: center;
+    }
+    .catering-content .eyebrow {
+      font-family: 'Oswald', sans-serif; font-size: .7rem; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--amber); margin-bottom: .625rem;
+    }
+    .catering-content h2 {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: clamp(2.25rem,5vw,3.5rem);
+      text-transform: uppercase; line-height: 1.05; margin-bottom: 1.25rem;
+    }
+    .catering-content p { font-size: 1rem; color: var(--cream-dim); line-height: 1.75; margin-bottom: 1.25rem; }
+    .catering-features { display: flex; flex-direction: column; gap: .875rem; margin: 1.75rem 0 2.25rem; }
+    .cf {
+      display: flex; align-items: center; gap: .875rem;
+      font-size: .9375rem; color: var(--cream-dim);
+    }
+    .cf-icon {
+      width: 36px; height: 36px; background: rgba(200,132,13,.12);
+      border: 1px solid rgba(200,132,13,.2); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--amber); flex-shrink: 0;
+    }
+    .catering-img-wrap { position: relative; }
+    .catering-img {
+      width: 100%; border-radius: var(--radius-xl); aspect-ratio: 4/3;
+      object-fit: cover; box-shadow: var(--shadow-xl);
+    }
+    .catering-rooms {
+      position: absolute; bottom: -1.25rem; left: -1.25rem;
+      background: var(--amber); color: var(--black);
+      border-radius: var(--radius-md); padding: 1.125rem 1.5rem;
+      box-shadow: var(--shadow-amber);
+    }
+    .catering-rooms-n {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 2rem; line-height: 1;
+    }
+    .catering-rooms-l { font-size: .8rem; font-weight: 600; margin-top: .25rem; }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--surface-0); }
+    .contact-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem,6vw,6rem);
+    }
+    .contact-info .eyebrow {
+      font-family: 'Oswald', sans-serif; font-size: .7rem; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--amber); margin-bottom: .625rem;
+    }
+    .contact-info h2 {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: clamp(2rem,4vw,3rem); text-transform: uppercase;
+      line-height: 1.05; margin-bottom: 1.125rem;
+    }
+    .contact-info p { font-size: 1rem; color: var(--cream-dim); line-height: 1.7; margin-bottom: 2rem; }
+    .contact-details { display: flex; flex-direction: column; gap: 1.375rem; }
+    .cd { display: flex; align-items: flex-start; gap: 1rem; }
+    .cd-icon {
+      width: 44px; height: 44px; background: rgba(200,132,13,.1);
+      border: 1px solid rgba(200,132,13,.2); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--amber); flex-shrink: 0; margin-top: .125rem;
+    }
+    .cd-label { font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: .25rem; }
+    .cd-value { font-size: .9375rem; font-weight: 600; color: var(--cream); line-height: 1.5; }
+
+    .contact-form {
+      background: var(--surface-1); border-radius: var(--radius-xl);
+      padding: 2.5rem; border: 1px solid rgba(200,132,13,.1);
+      box-shadow: var(--shadow-lg);
+    }
+    .fg { margin-bottom: 1.25rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    label {
+      display: block; font-size: .8125rem; font-weight: 600;
+      color: var(--cream-dim); letter-spacing: .04em; text-transform: uppercase; margin-bottom: .375rem;
+    }
+    input, textarea, select {
+      width: 100%; padding: .75rem 1rem;
+      background: var(--surface-2); border: 1.5px solid rgba(200,132,13,.15);
+      border-radius: var(--radius-md); color: var(--cream);
+      font-family: 'Inter', sans-serif; font-size: .9375rem;
+      outline: none; transition: border-color var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
+    }
+    input::placeholder, textarea::placeholder { color: var(--muted); }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px rgba(200,132,13,.15);
+    }
+    select option { background: var(--surface-2); }
+    textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      width: 100%; padding: .9375rem; margin-top: .375rem;
+      background: var(--amber); color: var(--black); border: none;
+      border-radius: var(--radius-md); cursor: pointer;
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 1rem; letter-spacing: .06em; text-transform: uppercase;
+      transition: background var(--fast) var(--ease), transform var(--fast) var(--ease);
+    }
+    .form-submit:hover { background: var(--amber-light); transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--black); padding: clamp(3rem,5vw,4.5rem) 0 1.5rem; border-top: 1px solid rgba(200,132,13,.1); }
+    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.5rem; text-transform: uppercase; color: var(--amber); margin-bottom: .875rem; }
+    .footer-brand .logo span { color: var(--cream); }
+    .footer-brand p { font-size: .875rem; color: var(--muted); line-height: 1.7; max-width: 260px; }
+    .footer-brand .phone { margin-top: 1.25rem; font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 1.125rem; color: var(--amber); }
+    .footer-col-title { font-family: 'Oswald', sans-serif; font-size: .65rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .footer-links a { font-size: .9rem; color: var(--cream-dim); transition: color var(--fast) var(--ease); }
+    .footer-links a:hover { color: var(--amber); }
+    .footer-bottom {
+      border-top: 1px solid rgba(245,237,216,.06); padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { font-size: .8rem; color: var(--muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .menu-grid { grid-template-columns: 1fr; }
+      .menu-card-tall { grid-row: auto; }
+      .menu-card { min-height: 300px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-burger { display: block; }
+      .wings-inner, .catering-inner, .contact-inner { grid-template-columns: 1fr; }
+      .catering-rooms { left: 1rem; bottom: -1rem; }
+      .wings-badge { right: 1rem; }
+      .event-row { grid-template-columns: 1fr; gap: .875rem; }
+      .event-badge { display: none; }
+      .event-divider { display: none; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-addr { display: none; }
+    }
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .r { opacity: 1; transform: none; }
+      .hero-scroll-line { animation: none; }
+      * { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <div class="nav-logo">Ted's <span>Bar &amp; Grill</span></div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#catering">Catering</a></li>
+          <li><a href="#contact" class="nav-cta">Reserve</a></li>
+        </ul>
+        <button class="nav-burger" id="burger" aria-label="Open menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge r">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Best Wings in Town
+        </div>
+        <h1 class="r d1">
+          <span class="accent">Ted's</span><br>Bar &amp;<br>Grill
+        </h1>
+        <p class="hero-sub r d2">
+          Homemade food, cold drinks, and <strong>wings that keep Harrisburg coming back</strong> since day one. Trivia nights, karaoke, Bar Bingo, and catering for every occasion.
+        </p>
+        <div class="hero-actions r d3">
+          <a href="#menu" class="btn-amber">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            View Menu
+          </a>
+          <a href="tel:7176523832" class="btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            717-652-3832
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-addr">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      7300 Allentown Blvd, Harrisburg, PA 17112
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- WINGS FEATURE -->
+  <section class="wings section-pad" id="wings">
+    <div class="container">
+      <div class="wings-inner">
+        <div class="wings-img-wrap r">
+          <img class="wings-img" src="https://images.unsplash.com/photo-1734987942068-a1a459d65d3d?w=900&q=80" alt="Ted's famous sauced chicken wings on a plate">
+          <div class="wings-badge">House Specialty</div>
+        </div>
+        <div class="wings-content r d1">
+          <p class="eyebrow">Why people come back</p>
+          <h2>The wings<br>that started it all</h2>
+          <p>There's a reason everyone in Harrisburg knows Ted's wings. Made fresh, tossed in your choice of sauce, and served the way they're meant to be. Not an afterthought on the menu. The reason for the menu.</p>
+          <p>Pair them with a cold draft and one of our homemade daily soups and you've got a meal that's hard to beat at any price.</p>
+          <div class="wings-flavors">
+            <span class="flavor-tag">Buffalo</span>
+            <span class="flavor-tag">Honey BBQ</span>
+            <span class="flavor-tag">Garlic Parm</span>
+            <span class="flavor-tag">Hot &amp; Spicy</span>
+            <span class="flavor-tag">Sweet Chili</span>
+            <span class="flavor-tag">Dry Rub</span>
+          </div>
+          <a href="#contact" class="btn-amber">Order for Your Event</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu section-pad" id="menu">
+    <div class="container">
+      <div class="sh r">
+        <p class="eyebrow">What we serve</p>
+        <h2>Made from<br>scratch. Daily.</h2>
+        <p>Homemade food, daily specials, and soups that change with the season. There's always something worth coming back for.</p>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card menu-card-tall r">
+          <img src="https://images.unsplash.com/photo-1623316405245-8418193f2fc0?w=900&q=80" alt="Grilled chicken entree at Ted's Bar and Grill">
+          <div class="menu-card-overlay"></div>
+          <div class="menu-card-body">
+            <div class="menu-card-tag">Fan Favorite</div>
+            <h3>Grilled Entrees</h3>
+            <p>Fresh off the grill, seasoned right. From chicken to burgers, everything is made to order and built to satisfy.</p>
+          </div>
+        </div>
+        <div class="menu-card menu-card-mini r d1">
+          <img src="https://images.unsplash.com/photo-1585703900468-13c7a978ad86?w=900&q=80" alt="Fried chicken sandwich and sides">
+          <div class="menu-card-overlay"></div>
+          <div class="menu-card-body">
+            <h3>Sandwiches &amp; Baskets</h3>
+            <p>Classic bar food done right. No shortcuts.</p>
+          </div>
+        </div>
+        <div class="menu-card menu-card-mini r d2">
+          <img src="https://images.unsplash.com/photo-1498092590708-048e0e2f46d7?w=900&q=80" alt="Daily specials and sides">
+          <div class="menu-card-overlay"></div>
+          <div class="menu-card-body">
+            <h3>Daily Specials &amp; Soups</h3>
+            <p>House-made every morning. Ask your server what's fresh.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="events section-pad" id="events">
+    <div class="container">
+      <div class="sh r">
+        <p class="eyebrow">Weekly events</p>
+        <h2>Something on<br>every night</h2>
+        <p>Ted's is more than a meal. Pull up a stool and stay a while.</p>
+      </div>
+      <div class="events-list">
+        <div class="event-row r">
+          <div class="event-day">
+            <div class="event-day-name">Tuesday</div>
+            <div class="event-day-time">8:00 PM</div>
+          </div>
+          <div class="event-divider"></div>
+          <div class="event-info">
+            <h3>Trivia Night</h3>
+            <p>Hosted by Cheaters Never Prosper. Bring your crew and test what you actually know. Prizes for the top teams.</p>
+          </div>
+          <div class="event-badge">Weekly</div>
+        </div>
+        <div class="event-row r d1">
+          <div class="event-day">
+            <div class="event-day-name">Wednesday</div>
+            <div class="event-day-time">7:00 PM</div>
+          </div>
+          <div class="event-divider"></div>
+          <div class="event-info">
+            <h3>Karaoke Night</h3>
+            <p>1st and 3rd Wednesdays of every month. Grab the mic. No judgment. Plenty of liquid courage at the bar.</p>
+          </div>
+          <div class="event-badge">2x Monthly</div>
+        </div>
+        <div class="event-row r d2">
+          <div class="event-day">
+            <div class="event-day-name">Thursday</div>
+            <div class="event-day-time">7:00 PM</div>
+          </div>
+          <div class="event-divider"></div>
+          <div class="event-info">
+            <h3>Bar Bingo</h3>
+            <p>Win Ted's gift cards. It's bingo. It's a bar. It's exactly as fun as it sounds.</p>
+          </div>
+          <div class="event-badge">Weekly</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATERING -->
+  <section class="catering section-pad" id="catering">
+    <div class="container">
+      <div class="catering-inner">
+        <div class="catering-content r">
+          <p class="eyebrow">Private events</p>
+          <h2>We'll handle<br>the whole thing</h2>
+          <p>Birthdays, graduations, showers, corporate lunches. Ted's does full-service catering on-site and off. Two private dining rooms available for groups of any size.</p>
+          <p>Our catering team handles delivery, setup, and service so you can actually enjoy your own event.</p>
+          <div class="catering-features">
+            <div class="cf">
+              <div class="cf-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              Two private dining rooms on-site
+            </div>
+            <div class="cf">
+              <div class="cf-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              Off-site delivery and setup available
+            </div>
+            <div class="cf">
+              <div class="cf-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              Parties of all sizes accommodated
+            </div>
+            <div class="cf">
+              <div class="cf-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              Craft beer promotions and brewery features
+            </div>
+          </div>
+          <a href="#contact" class="btn-amber">Inquire About Catering</a>
+        </div>
+        <div class="catering-img-wrap r d1">
+          <img class="catering-img" src="https://images.unsplash.com/photo-1676887451694-713019c9031f?w=900&q=80" alt="Catering and event setup at Ted's Bar and Grill">
+          <div class="catering-rooms">
+            <div class="catering-rooms-n">2</div>
+            <div class="catering-rooms-l">Private Dining Rooms</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact section-pad" id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="contact-info r">
+          <p class="eyebrow">Find us</p>
+          <h2>Come on in</h2>
+          <p>We're on Allentown Boulevard in Harrisburg. Call ahead, stop by, or fill out the form to inquire about catering or events.</p>
+          <div class="contact-details">
+            <div class="cd">
+              <div class="cd-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div><div class="cd-label">Phone</div><div class="cd-value">717-652-3832</div></div>
+            </div>
+            <div class="cd">
+              <div class="cd-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div><div class="cd-label">Address</div><div class="cd-value">7300 Allentown Blvd<br>Harrisburg, PA 17112</div></div>
+            </div>
+            <div class="cd">
+              <div class="cd-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div><div class="cd-label">Hours</div><div class="cd-value">Call for current hours</div></div>
+            </div>
+            <div class="cd">
+              <div class="cd-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </div>
+              <div><div class="cd-label">Instagram</div><div class="cd-value">@tedsbarandgrill22</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form r d1">
+          <form>
+            <div class="form-row">
+              <div class="fg"><label>First name</label><input type="text" placeholder="Jane" autocomplete="given-name"></div>
+              <div class="fg"><label>Last name</label><input type="text" placeholder="Smith" autocomplete="family-name"></div>
+            </div>
+            <div class="fg"><label>Phone</label><input type="tel" placeholder="717-000-0000" autocomplete="tel"></div>
+            <div class="fg"><label>Email</label><input type="email" placeholder="jane@example.com" autocomplete="email"></div>
+            <div class="fg">
+              <label>Inquiry type</label>
+              <select autocomplete="off">
+                <option value="" disabled selected>Select one...</option>
+                <option>Catering inquiry</option>
+                <option>Private event booking</option>
+                <option>General question</option>
+                <option>Music / entertainment</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label>Message</label>
+              <textarea placeholder="Tell us about your event or question..."></textarea>
+            </div>
+            <button type="submit" class="form-submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="logo">Ted's <span>Bar &amp; Grill</span></div>
+          <p>Homemade food, cold drinks, and the best wings in Harrisburg, PA. Come for the wings. Stay for everything else.</p>
+          <div class="phone">717-652-3832</div>
+        </div>
+        <div>
+          <p class="footer-col-title">Visit</p>
+          <ul class="footer-links">
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#events">Weekly Events</a></li>
+            <li><a href="#catering">Catering</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">Location</p>
+          <ul class="footer-links">
+            <li><a href="#">7300 Allentown Blvd</a></li>
+            <li><a href="#">Harrisburg, PA 17112</a></li>
+            <li><a href="https://instagram.com/tedsbarandgrill22" target="_blank" rel="noopener">@tedsbarandgrill22</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Ted's Bar &amp; Grill. Harrisburg, PA. All rights reserved.</p>
+        <p>Eat well. Drink cold. Stay local.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    const heroBg = document.getElementById('heroBg');
+
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      nav.classList.toggle('scrolled', y > 40);
+      if (y < window.innerHeight) {
+        heroBg.style.transform = `scale(1.06) translateY(${y * 0.28}px)`;
+      }
+    }, { passive: true });
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+    document.querySelectorAll('.r').forEach(el => io.observe(el));
+
+    document.getElementById('burger').addEventListener('click', () => {
+      const links = document.getElementById('navLinks');
+      const open = links.getAttribute('data-open') === '1';
+      if (open) {
+        links.removeAttribute('style');
+        links.removeAttribute('data-open');
+      } else {
+        Object.assign(links.style, {
+          display: 'flex', flexDirection: 'column', position: 'absolute',
+          top: '100%', left: '0', right: '0',
+          background: 'rgba(14,9,4,.97)', backdropFilter: 'blur(14px)',
+          padding: '1.5rem 2rem', gap: '1.25rem',
+          boxShadow: '0 8px 24px rgba(0,0,0,.4)',
+          borderTop: '1px solid rgba(200,132,13,.15)'
+        });
+        links.setAttribute('data-open', '1');
+      }
+    });
+  </script>
+</body>
+</html>
