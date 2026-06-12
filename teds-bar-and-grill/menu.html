@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu | Ted's Bar &amp; Grill | Harrisburg, PA</title>
+  <meta name="description" content="Full lunch, dinner, and cocktail menus at Ted's Bar and Grill, Harrisburg PA. Wings, burgers, steaks, seafood, pasta, and craft cocktails.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black:       #0E0904;
+      --surface-0:   #1A1208;
+      --surface-1:   #231A0C;
+      --surface-2:   #2E2210;
+      --amber-900:   #6B3E03;
+      --amber-800:   #8B5206;
+      --amber:       #C8840D;
+      --amber-light: #E8A020;
+      --red:         #B83228;
+      --cream:       #F5EDD8;
+      --cream-dim:   #C8BA9C;
+      --muted:       #8A7A60;
+      --radius-sm:   6px;
+      --radius-md:   12px;
+      --radius-lg:   20px;
+      --ease: cubic-bezier(.4,0,.2,1);
+      --fast: 150ms;
+      --base: 260ms;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--surface-0); color: var(--cream); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1rem,4vw,2.5rem); }
+
+    /* ── NAV ── */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.125rem 0; background: rgba(14,9,4,.97); backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(200,132,13,.15); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.25rem; letter-spacing: .06em; text-transform: uppercase; color: var(--amber); }
+    .nav-logo span { color: var(--cream); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { font-family: 'Oswald', sans-serif; font-weight: 500; font-size: .875rem; letter-spacing: .08em; text-transform: uppercase; color: var(--cream-dim); transition: color var(--fast) var(--ease); }
+    .nav-links a:hover, .nav-links a.active { color: var(--amber); }
+    .nav-cta { background: var(--amber) !important; color: var(--black) !important; padding: .5rem 1.125rem; border-radius: var(--radius-sm); }
+    .nav-cta:hover { background: var(--amber-light) !important; }
+    .nav-burger { display: none; background: none; border: none; padding: .5rem; color: var(--cream); }
+
+    /* ── PAGE HEADER ── */
+    .page-header { padding: 7rem 0 3rem; background: var(--black); border-bottom: 1px solid rgba(200,132,13,.12); }
+    .page-header h1 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(2.5rem,6vw,5rem); text-transform: uppercase; line-height: 1; }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p { font-size: 1rem; color: var(--cream-dim); margin-top: .75rem; }
+
+    /* ── TAB BAR ── */
+    .tab-bar { position: sticky; top: 58px; z-index: 90; background: var(--black); border-bottom: 1px solid rgba(200,132,13,.12); }
+    .tab-inner { display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+    .tab-inner::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      font-family: 'Oswald', sans-serif; font-weight: 600; font-size: .875rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); background: none; border: none;
+      padding: 1rem 1.75rem; white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color var(--fast) var(--ease), border-color var(--fast) var(--ease);
+    }
+    .tab-btn:hover { color: var(--cream-dim); }
+    .tab-btn.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+    /* ── MENU PANELS ── */
+    .menu-panel { display: none; padding: 3rem 0 5rem; }
+    .menu-panel.active { display: block; }
+
+    /* ── MENU SECTION ── */
+    .menu-section { margin-bottom: 3.5rem; }
+    .menu-section:last-child { margin-bottom: 0; }
+    .section-title {
+      font-family: 'Oswald', sans-serif; font-weight: 700;
+      font-size: 1.375rem; text-transform: uppercase; letter-spacing: .06em;
+      color: var(--amber); padding-bottom: .75rem;
+      border-bottom: 1px solid rgba(200,132,13,.2);
+      margin-bottom: 1.5rem;
+    }
+    .section-note { font-size: .8125rem; color: var(--muted); margin-top: -.75rem; margin-bottom: 1.25rem; line-height: 1.6; }
+
+    /* ── ITEM LIST ── */
+    .item-list { display: flex; flex-direction: column; gap: 0; }
+    .menu-item {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 1.5rem; align-items: start;
+      padding: 1.125rem 0;
+      border-bottom: 1px solid rgba(245,237,216,.06);
+      transition: background var(--fast) var(--ease);
+    }
+    .menu-item:last-child { border-bottom: none; }
+    .item-name { font-weight: 600; font-size: .9375rem; color: var(--cream); margin-bottom: .25rem; }
+    .item-desc { font-size: .8125rem; color: var(--cream-dim); line-height: 1.6; }
+    .item-price { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: .9375rem; color: var(--amber); white-space: nowrap; padding-top: .125rem; }
+    .item-price.market { color: var(--muted); font-size: .8125rem; }
+
+    /* ── TWO COLUMN ITEM GRID (for long sections) ── */
+    .item-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem; }
+    .item-grid .menu-item { padding: .875rem 0; }
+
+    /* ── WING SIZES TABLE ── */
+    .wing-sizes { display: grid; grid-template-columns: repeat(3,1fr); gap: .5rem; margin-bottom: 1.5rem; }
+    .wing-size {
+      background: var(--surface-1); border: 1px solid rgba(200,132,13,.12);
+      border-radius: var(--radius-md); padding: .875rem 1rem; text-align: center;
+    }
+    .wing-size-count { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.25rem; color: var(--cream); }
+    .wing-size-price { font-size: .8125rem; color: var(--amber); margin-top: .125rem; }
+    .wing-size-label { font-size: .7rem; color: var(--muted); margin-top: .125rem; }
+
+    /* ── SAUCE TAGS ── */
+    .sauce-block { margin-bottom: 1.25rem; }
+    .sauce-label { font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: .5rem; }
+    .sauce-tags { display: flex; flex-wrap: wrap; gap: .375rem; }
+    .sauce-tag {
+      font-size: .75rem; font-weight: 500;
+      background: var(--surface-1); color: var(--cream-dim);
+      border: 1px solid rgba(245,237,216,.1);
+      padding: .25rem .75rem; border-radius: 100px;
+    }
+    .sauce-tag.rub { border-color: rgba(200,132,13,.2); color: var(--amber); }
+
+    /* ── PIZZA BUILDER ── */
+    .pizza-builder { background: var(--surface-1); border: 1px solid rgba(200,132,13,.15); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 1.5rem; }
+    .pizza-builder h3 { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.125rem; text-transform: uppercase; color: var(--cream); margin-bottom: 1.25rem; }
+    .pizza-sizes { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .pizza-size {
+      background: var(--surface-2); border: 1px solid rgba(200,132,13,.15);
+      border-radius: var(--radius-md); padding: .75rem 1.25rem;
+    }
+    .pizza-size-name { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: .9rem; text-transform: uppercase; color: var(--cream); }
+    .pizza-size-price { font-size: .8rem; color: var(--amber); margin-top: .125rem; }
+    .pizza-steps { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+    .pizza-step { background: var(--surface-2); border-radius: var(--radius-md); padding: 1rem 1.125rem; }
+    .pizza-step-num { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); margin-bottom: .375rem; }
+    .pizza-step-title { font-weight: 600; font-size: .875rem; color: var(--cream); margin-bottom: .375rem; }
+    .pizza-step-opts { font-size: .8125rem; color: var(--cream-dim); line-height: 1.65; }
+
+    /* ── PIEROGIS ── */
+    .pierogi-sizes { display: grid; grid-template-columns: repeat(3,1fr); gap: .5rem; margin-bottom: .75rem; }
+
+    /* ── COCKTAIL CARDS ── */
+    .cocktail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .cocktail-card {
+      background: var(--surface-1); border: 1px solid rgba(200,132,13,.12);
+      border-radius: var(--radius-lg); padding: 1.5rem;
+      transition: border-color var(--base) var(--ease);
+    }
+    .cocktail-card:hover { border-color: rgba(200,132,13,.3); }
+    .cocktail-name { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.125rem; text-transform: uppercase; color: var(--cream); margin-bottom: .5rem; }
+    .cocktail-ingredients { font-size: .8375rem; color: var(--cream-dim); line-height: 1.7; }
+    .cocktail-badge { display: inline-block; font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; background: rgba(200,132,13,.12); color: var(--amber); border: 1px solid rgba(200,132,13,.2); padding: .2rem .625rem; border-radius: 100px; margin-bottom: .625rem; }
+    .cocktail-badge.mocktail { background: rgba(245,237,216,.06); color: var(--muted); border-color: rgba(245,237,216,.1); }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer { font-size: .75rem; color: var(--muted); line-height: 1.6; padding: 1.5rem 0 0; border-top: 1px solid rgba(245,237,216,.06); margin-top: 3rem; }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--black); padding: 2.5rem 0 1.5rem; border-top: 1px solid rgba(200,132,13,.1); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem; }
+    .footer-brand .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.25rem; text-transform: uppercase; color: var(--amber); }
+    .footer-brand .logo span { color: var(--cream); }
+    .footer-brand p { font-size: .8125rem; color: var(--muted); margin-top: .5rem; }
+    .footer-links-col { display: flex; flex-direction: column; gap: .625rem; }
+    .footer-links-col a { font-size: .875rem; color: var(--cream-dim); transition: color var(--fast) var(--ease); }
+    .footer-links-col a:hover { color: var(--amber); }
+    .footer-bottom { border-top: 1px solid rgba(245,237,216,.06); padding-top: 1.25rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { font-size: .75rem; color: var(--muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-burger { display: block; }
+      .item-grid { grid-template-columns: 1fr; }
+      .wing-sizes { grid-template-columns: repeat(2,1fr); }
+      .pizza-steps { grid-template-columns: 1fr; }
+      .cocktail-grid { grid-template-columns: 1fr; }
+      .pierogi-sizes { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 480px) {
+      .wing-sizes { grid-template-columns: repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Ted's <span>Bar &amp; Grill</span></a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="menu.html" class="active">Menu</a></li>
+          <li><a href="index.html#events">Events</a></li>
+          <li><a href="index.html#catering">Catering</a></li>
+          <li><a href="index.html#contact" class="nav-cta">Reserve</a></li>
+        </ul>
+        <button class="nav-burger" id="burger" aria-label="Open menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="container">
+      <h1><span class="accent">Our</span> Menu</h1>
+      <p>7300 Allentown Blvd, Harrisburg, PA &nbsp;·&nbsp; 717-652-3832</p>
+    </div>
+  </div>
+
+  <!-- TAB BAR -->
+  <div class="tab-bar">
+    <div class="container">
+      <div class="tab-inner">
+        <button class="tab-btn active" data-tab="lunch">Lunch</button>
+        <button class="tab-btn" data-tab="dinner">Dinner</button>
+        <button class="tab-btn" data-tab="cocktails">Cocktails</button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ══════════════════════════════
+         LUNCH
+    ══════════════════════════════ -->
+    <div class="menu-panel active" id="tab-lunch">
+      <div class="container">
+
+        <!-- Soups & Salads -->
+        <div class="menu-section">
+          <div class="section-title">Soups &amp; Salads</div>
+          <p class="section-note">Add to your salad: Chicken +4.95 / Steak +7.95 / Shrimp +5.95 &nbsp;|&nbsp; Dressings: Ranch, Bleu Cheese, Caesar, Greek, French, Balsamic Vinaigrette, Italian, Thousand Island, Honey Mustard</p>
+          <div class="item-list">
+            <div class="menu-item"><div><div class="item-name">Soup of the Day</div></div><div class="item-price">5.95 / 6.95</div></div>
+            <div class="menu-item"><div><div class="item-name">French Onion Soup</div></div><div class="item-price">6.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Seafood Soup</div></div><div class="item-price">6.95 / 7.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Chili</div></div><div class="item-price">5.95 / 6.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Greek Salad</div><div class="item-desc">Iceberg lettuce, feta cheese, red onions, tomatoes, green peppers, cucumbers and Kalamata olives</div></div><div class="item-price">8.95 / 10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Cobb Salad</div><div class="item-desc">Iceberg lettuce, tomatoes, onions, hard boiled egg, bacon crumbles, avocado and bleu cheese crumbles</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Caesar Salad</div><div class="item-desc">Romaine lettuce, parmesan cheese, Kalamata olives and croutons</div></div><div class="item-price">8.95 / 10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Buffalo Chicken Salad</div><div class="item-desc">Grilled or fried chicken tossed in hot sauce, iceberg lettuce, tomatoes, mozzarella cheese, cucumbers, green peppers and onions</div></div><div class="item-price">13.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Pittsburgh Salad</div><div class="item-desc">Iceberg lettuce, tomatoes, cucumbers, onions, green peppers, mozzarella cheese, grilled steak and french fries. Also available with chicken or shrimp.</div></div><div class="item-price">13.95 – 15.95</div></div>
+          </div>
+        </div>
+
+        <!-- Wings -->
+        <div class="menu-section">
+          <div class="section-title">Ted's Famous Wings</div>
+          <p class="section-note">Boneless or regular. All orders of bleu cheese &amp; celery +.50. All flats or drums +2.00 (no all flats or drums over 12 pieces).</p>
+          <div class="wing-sizes">
+            <div class="wing-size"><div class="wing-size-count">6</div><div class="wing-size-price">$9.95</div><div class="wing-size-label">pieces</div></div>
+            <div class="wing-size"><div class="wing-size-count">12</div><div class="wing-size-price">$15.95</div><div class="wing-size-label">pieces</div></div>
+            <div class="wing-size"><div class="wing-size-count">18</div><div class="wing-size-price">$23.95</div><div class="wing-size-label">pieces</div></div>
+            <div class="wing-size"><div class="wing-size-count">27</div><div class="wing-size-price">$32.95</div><div class="wing-size-label">pieces</div></div>
+            <div class="wing-size"><div class="wing-size-count">36</div><div class="wing-size-price">$40.95</div><div class="wing-size-label">pieces</div></div>
+            <div class="wing-size"><div class="wing-size-count">52</div><div class="wing-size-price">$58.95</div><div class="wing-size-label">pieces</div></div>
+          </div>
+          <div class="sauce-block">
+            <div class="sauce-label">Sauces</div>
+            <div class="sauce-tags">
+              <span class="sauce-tag">Mild</span><span class="sauce-tag">Hot</span><span class="sauce-tag">Inferno</span><span class="sauce-tag">Deja Vu</span><span class="sauce-tag">Hot Garlic</span><span class="sauce-tag">Garlic Parmesan</span><span class="sauce-tag">Garlic BBQ</span><span class="sauce-tag">Thai BBQ</span><span class="sauce-tag">Honey BBQ</span><span class="sauce-tag">Honey Hotcha</span><span class="sauce-tag">Sweet and Tangy</span><span class="sauce-tag">Dirty J</span><span class="sauce-tag">Boom Boom</span><span class="sauce-tag">Tombstone</span>
+            </div>
+          </div>
+          <div class="sauce-block">
+            <div class="sauce-label">Dry Rubs</div>
+            <div class="sauce-tags">
+              <span class="sauce-tag rub">Lemon Pepper</span><span class="sauce-tag rub">Caribbean Jerk</span><span class="sauce-tag rub">Tomahawk</span><span class="sauce-tag rub">Old Bay</span><span class="sauce-tag rub">BBQ 22</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shareables / Appetizers -->
+        <div class="menu-section">
+          <div class="section-title">Shareables &amp; Appetizers</div>
+          <div class="item-grid">
+            <div class="menu-item"><div><div class="item-name">Buffalo Chicken Dip</div><div class="item-desc">Cream cheese with buffalo sauce, ranch and shredded chicken. Served with tortilla chips</div></div><div class="item-price">9.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Crab Dip</div><div class="item-desc">Lumps of fresh crabmeat folded together with cream cheese. Served with tortilla chips</div></div><div class="item-price">12.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Philly Cheesesteak Egg Rolls</div><div class="item-desc">Crispy deep fried egg rolls filled with cheesesteak meat, peppers, onions and American cheese. Served with marinara</div></div><div class="item-price">9.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Duck Poppers</div><div class="item-desc">Tender duck breast meat stuffed with bleu cheese and pickled jalapeño. Rolled in smoked bacon with sweet barbecue sauce</div></div><div class="item-price">12.95</div></div>
+            <div class="menu-item"><div><div class="item-name">OG Potato Skins</div><div class="item-desc">3 crispy fried potato skins with mozzarella cheese, cheddar cheese sauce and bacon</div></div><div class="item-price">9.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Half Pound Steamed Shrimp</div><div class="item-desc">Served warm with Old Bay and melted butter</div></div><div class="item-price">13.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Steamed Clams</div><div class="item-desc">One pound of clams, steamed or Italiano with garlic butter, tomatoes and garlic bread</div></div><div class="item-price">12.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Bacon Wrapped Scallops</div><div class="item-desc">Succulent Chesapeake Bay scallops wrapped in smoked bacon</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Crab Stuffed Mushroom Caps</div><div class="item-desc">House made and stuffed with fresh blue crabmeat</div></div><div class="item-price">13.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Mozzarella Cheese Curds</div><div class="item-desc">Lightly breaded and fried until golden brown. Served with marinara</div></div><div class="item-price">9.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Crabby Fries</div><div class="item-desc">Garlic Old Bay french fries topped with crab, mozzarella and Creole sauce</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Dip Trio</div><div class="item-desc">Crab dip, buffalo chicken dip and queso. Served with tortilla chips</div></div><div class="item-price">13.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Soft Pretzel Sticks</div><div class="item-desc">Warm Bavarian style soft pretzels with cheese sauce or whole grain mustard</div></div><div class="item-price">9.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Prime Rib Nachos</div><div class="item-desc">Tortilla chips with prime rib, cheddar and mozzarella, shredded lettuce, diced tomatoes and pickled jalapeños. Chicken nachos also available.</div></div><div class="item-price">12.95 – 14.95</div></div>
+            <div class="menu-item"><div><div class="item-name">TB&amp;G Fries</div><div class="item-desc">Crispy fries topped with shaved New York strip, peppers, onions and provolone with roasted garlic aioli</div></div><div class="item-price">12.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Prime Rib Quesadilla</div><div class="item-desc">Tender prime rib with cheddar and mozzarella in a warm tortilla. Served with salsa, sour cream and jalapeños. Chicken quesadilla also available.</div></div><div class="item-price">12.95 – 14.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Pulled Pork Tots</div><div class="item-desc">Crispy tater tots topped with barbecue pulled pork and cheddar cheese</div></div><div class="item-price">11.95</div></div>
+          </div>
+        </div>
+
+        <!-- Baskets & Fries -->
+        <div class="menu-section">
+          <div class="section-title">Baskets &amp; Fries</div>
+          <div class="item-grid">
+            <div class="menu-item"><div><div class="item-name">Shrimp Basket with Fries</div></div><div class="item-price">12.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Chicken Tenders with Fries</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Hand Battered Fish and Chips</div><div class="item-desc">Served with coleslaw</div></div><div class="item-price">14.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Onion Rings</div></div><div class="item-price">7.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Sweet Potato Fries</div><div class="item-desc">Served with rootbeer BBQ sauce</div></div><div class="item-price">6.95</div></div>
+            <div class="menu-item"><div><div class="item-name">BBQ 22 Fries</div></div><div class="item-price">7.95</div></div>
+            <div class="menu-item"><div><div class="item-name">French Fries or Tater Tots</div><div class="item-desc">Add beer cheese or nacho cheddar +1.50 / Add chili and cheese +2.50 / Add bacon and cheese +2.50</div></div><div class="item-price">6.95</div></div>
+          </div>
+        </div>
+
+        <!-- Pierogis -->
+        <div class="menu-section">
+          <div class="section-title">Pierogis</div>
+          <p class="section-note">Sauteed or fried with butter and onions, or your choice of any wing sauce.</p>
+          <div class="pierogi-sizes wing-sizes">
+            <div class="wing-size"><div class="wing-size-count">6</div><div class="wing-size-price">$7.95</div></div>
+            <div class="wing-size"><div class="wing-size-count">12</div><div class="wing-size-price">$12.95</div></div>
+            <div class="wing-size"><div class="wing-size-count">18</div><div class="wing-size-price">$17.95</div></div>
+            <div class="wing-size"><div class="wing-size-count">27</div><div class="wing-size-price">$23.95</div></div>
+            <div class="wing-size"><div class="wing-size-count">36</div><div class="wing-size-price">$32.95</div></div>
+            <div class="wing-size"><div class="wing-size-count">52</div><div class="wing-size-price">$44.95</div></div>
+          </div>
+        </div>
+
+        <!-- Build Your Own Pizza -->
+        <div class="menu-section">
+          <div class="section-title">Build Your Own Pizza</div>
+          <div class="pizza-builder">
+            <div class="pizza-sizes">
+              <div class="pizza-size"><div class="pizza-size-name">French Bread</div><div class="pizza-size-price">$8.95</div></div>
+              <div class="pizza-size"><div class="pizza-size-name">Large</div><div class="pizza-size-price">$10.95</div></div>
+            </div>
+            <div class="pizza-steps">
+              <div class="pizza-step"><div class="pizza-step-num">Step 1 &mdash; Choose your base</div><div class="pizza-step-title">Base</div><div class="pizza-step-opts">French Bread or Large</div></div>
+              <div class="pizza-step"><div class="pizza-step-num">Step 2 &mdash; Choose your cheese</div><div class="pizza-step-title">Cheese</div><div class="pizza-step-opts">Mozzarella, Cheddar, Parmesan</div></div>
+              <div class="pizza-step"><div class="pizza-step-num">Step 3 &mdash; Sauce it up</div><div class="pizza-step-title">Sauce</div><div class="pizza-step-opts">Homemade Pizza Sauce, Barbecue Sauce, Garlic &amp; Olive Oil, Alfredo Sauce, Hot Sauce</div></div>
+              <div class="pizza-step"><div class="pizza-step-num">Step 4 &mdash; Pick your toppings</div><div class="pizza-step-title">Toppings</div><div class="pizza-step-opts">Mushrooms, Onions, Green Peppers, Tomatoes, Jalapeños, Banana Peppers +.50 each<br><br>Pepperoni, Sausage, Chicken, Pulled Pork, Shrimp, Crab, Bacon +1.00 each</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Burgers -->
+        <div class="menu-section">
+          <div class="section-title">Burgers</div>
+          <p class="section-note">Freshly made with premium Angus beef on a golden brioche roll with lettuce, tomato, red onion and kosher dill pickle spear. Served with Middleswarth potato chips. Add fries or tots +2.00. Upgrade to pretzel roll +1.50.</p>
+          <div class="item-grid">
+            <div class="menu-item"><div><div class="item-name">Rise and Shine Burger</div><div class="item-desc">Fried egg, crispy bacon and choice of American, Swiss, provolone or cheddar cheese</div></div><div class="item-price">12.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Western Burger</div><div class="item-desc">Bacon, barbeque sauce, onion rings, lettuce, tomato, onion and cheddar cheese</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Bacon Jam Pepper Jack Burger</div><div class="item-desc">Pepper jack cheese, homemade bacon jam, pickled jalapeños</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Jalapeño Chili Cheeseburger</div><div class="item-desc">Homemade chili, cheddar cheese sauce and pickled jalapeño peppers</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Cheeseburger</div><div class="item-desc">Choice of American, Swiss, provolone, pepper jack or cheddar cheese</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Mushroom Swiss Burger</div><div class="item-desc">Sauteed mushrooms and Swiss</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Patty Melt</div><div class="item-desc">Sauteed onions, Swiss cheese on grilled rye</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Ted's Tavern Burger</div><div class="item-desc">Caramelized onions, bacon and beer cheese on a pretzel roll</div></div><div class="item-price">11.95</div></div>
+          </div>
+        </div>
+
+        <!-- Handhelds -->
+        <div class="menu-section">
+          <div class="section-title">Handhelds, Wraps &amp; Subs</div>
+          <p class="section-note">All handhelds served with potato chips and kosher dill pickle spear. Add fries or tots +2.00. Upgrade to pretzel roll +1.50.</p>
+          <div class="item-grid">
+            <div class="menu-item"><div><div class="item-name">Reuben</div><div class="item-desc">Sliced corned beef, Swiss cheese and sauerkraut on rye with thousand island dressing</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Rachel</div><div class="item-desc">Sliced turkey, Swiss cheese and coleslaw on rye with thousand island dressing</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Barbecue Brisket Sandwich</div><div class="item-desc">Slow roasted brisket with homemade Bulleit Rye apple barbecue sauce on a brioche roll</div></div><div class="item-price">14.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Gyro / Chicken Gyro</div><div class="item-desc">Served on pita bread with lettuce, tomato, red onion and tzatziki sauce</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Fish Sandwich</div><div class="item-desc">Hand battered haddock filet on a brioche roll with lettuce, tomato and red onion</div></div><div class="item-price">14.95</div></div>
+            <div class="menu-item"><div><div class="item-name">The TB&amp;G Sandwich</div><div class="item-desc">Shaved New York strip steak with marinated peppers and onions, provolone cheese and garlic aioli on a ciabatta roll</div></div><div class="item-price">14.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Crabcake Sandwich</div><div class="item-desc">Broiled crab meat on a brioche roll with lettuce, tomato and red onion</div></div><div class="item-price">18.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Club Sandwich</div><div class="item-desc">Ham or turkey layered with bacon, lettuce, tomato and mayo on white toast</div></div><div class="item-price">12.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Caprese Sandwich</div><div class="item-desc">Sliced chicken breast, fresh mozzarella, sliced tomatoes, mixed greens and pesto on a ciabatta roll</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Salmon BLT</div><div class="item-desc">Seared salmon filet on a ciabatta roll with bacon, lettuce, tomato and house made dill aioli</div></div><div class="item-price">16.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Spicy Southwest Chicken Sandwich</div><div class="item-desc">Sliced chicken with southwest spices, grilled onions, peppers and blended cheeses in a pita</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">French Dip</div><div class="item-desc">Classic pub style with shredded prime rib, sauteed onions and melted Swiss cheese</div></div><div class="item-price">14.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Nashville Fried Chicken Sandwich</div><div class="item-desc">Fried chicken with Nashville hot sauce, lettuce, tomato, red onion and pickles on a brioche roll</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Pulled Pork Sandwich</div><div class="item-desc">Southern style barbecue pork on a brioche roll</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Cuban Sandwich</div><div class="item-desc">Roasted pork, baked ham, Swiss cheese, pickles and whole grain mustard</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Philly Cheesesteak Wrap</div><div class="item-desc">Chopped and grilled Philly cheesesteak meat with grilled onions, green peppers and melted American cheese. Upgrade to NY Strip or prime rib +4.</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Chicken Bacon Ranch Wrap</div><div class="item-desc">Grilled chicken breast with crispy bacon, ranch dressing, lettuce, tomato and red onion</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Chicken Caesar Wrap</div><div class="item-desc">Grilled chicken breast with crispy romaine, parmesan cheese and classic Caesar dressing</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Thai Chicken Wrap</div><div class="item-desc">Grilled sliced chicken with carrots, lettuce, pickled onions and peanut sauce</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Hot Wing Hoagie</div><div class="item-desc">Fried chicken strips smothered in hot sauce with lettuce, tomato and red onion</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Cheesesteak</div><div class="item-desc">Grilled Philly cheesesteak meat with grilled onions, green peppers and melted American cheese. Upgrade to NY Strip or prime rib +4.</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Italian Sub</div><div class="item-desc">Genoa salami, ham, capicola, provolone cheese, lettuce, tomato, red onion and oil and vinegar</div></div><div class="item-price">11.95</div></div>
+          </div>
+        </div>
+
+        <p class="disclaimer">*Consuming raw or undercooked meats, seafood, shellfish or poultry may increase your risk of foodborne illness, especially if you have medical conditions. Please be aware our restaurant uses beef tallow in our food preparation. Ted's reserves the right to charge 18% gratuity to parties of 10 or larger.</p>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════
+         DINNER
+    ══════════════════════════════ -->
+    <div class="menu-panel" id="tab-dinner">
+      <div class="container">
+
+        <!-- Soups & Salads -->
+        <div class="menu-section">
+          <div class="section-title">Soups &amp; Salads</div>
+          <p class="section-note">Add to your salad: Chicken +4.95 / Steak +7.95 / Shrimp +5.95 &nbsp;|&nbsp; Dressings: Ranch, Bleu Cheese, Caesar, Greek, French, Balsamic Vinaigrette, Italian, Thousand Island, Honey Mustard</p>
+          <div class="item-list">
+            <div class="menu-item"><div><div class="item-name">Soup of the Day</div></div><div class="item-price">5.95 / 6.95</div></div>
+            <div class="menu-item"><div><div class="item-name">French Onion Soup</div></div><div class="item-price">6.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Seafood Soup</div></div><div class="item-price">6.95 / 7.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Chili</div></div><div class="item-price">5.95 / 6.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Greek Salad</div><div class="item-desc">Iceberg lettuce, feta cheese, red onions, tomatoes, green peppers, cucumbers and Kalamata olives</div></div><div class="item-price">8.95 / 10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Pittsburgh Salad</div><div class="item-desc">Iceberg lettuce, tomatoes, onions, cucumbers, green peppers, mozzarella cheese, grilled steak and french fries</div></div><div class="item-price">13.95 – 15.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Caesar Salad</div><div class="item-desc">Romaine lettuce, parmesan cheese, Kalamata olives and croutons</div></div><div class="item-price">8.95 / 10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Cobb Salad</div><div class="item-desc">Iceberg lettuce, tomatoes, onions, hard boiled egg, bacon crumbles, avocado and bleu cheese crumbles</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Buffalo Chicken Salad</div><div class="item-desc">Grilled or fried chicken tossed in hot sauce, iceberg lettuce, tomatoes, mozzarella cheese, cucumbers, green peppers and onions</div></div><div class="item-price">13.95</div></div>
+          </div>
+        </div>
+
+        <!-- Wings -->
+        <div class="menu-section">
+          <div class="section-title">Ted's Famous Wings</div>
+          <p class="section-note">Boneless or regular. All orders of bleu cheese &amp; celery +.50. All flats or drums +2.00 (no all flats or drums over 12 pieces).</p>
+          <div class="wing-sizes">
+            <div class="wing-size"><div class="wing-size-count">6</div><div class="wing-size-price">$9.95</div></div>
+            <div class="wing-size"><div class="wing-size-count">12</div><div class="wing-size-price">$15.95</div></div>
+            <div class="wing-size"><div class="wing-size-count">18</div><div class="wing-size-price">$23.95</div></div>
+            <div class="wing-size"><div class="wing-size-count">27</div><div class="wing-size-price">$32.95</div></div>
+            <div class="wing-size"><div class="wing-size-count">36</div><div class="wing-size-price">$40.95</div></div>
+            <div class="wing-size"><div class="wing-size-count">52</div><div class="wing-size-price">$58.95</div></div>
+          </div>
+          <div class="sauce-block">
+            <div class="sauce-label">Sauces</div>
+            <div class="sauce-tags">
+              <span class="sauce-tag">Mild</span><span class="sauce-tag">Hot</span><span class="sauce-tag">Inferno</span><span class="sauce-tag">Deja Vu</span><span class="sauce-tag">Hot Garlic</span><span class="sauce-tag">Garlic Parmesan</span><span class="sauce-tag">Garlic BBQ</span><span class="sauce-tag">Thai BBQ</span><span class="sauce-tag">Honey BBQ</span><span class="sauce-tag">Sweet and Tangy</span><span class="sauce-tag">Boom Boom</span><span class="sauce-tag">Dirty J</span><span class="sauce-tag">Honey Hotcha</span><span class="sauce-tag">Nashville Hot</span><span class="sauce-tag">Tombstone</span>
+            </div>
+          </div>
+          <div class="sauce-block">
+            <div class="sauce-label">Dry Rubs</div>
+            <div class="sauce-tags">
+              <span class="sauce-tag rub">Lemon Pepper</span><span class="sauce-tag rub">Caribbean Jerk</span><span class="sauce-tag rub">Tomahawk</span><span class="sauce-tag rub">Old Bay</span><span class="sauce-tag rub">BBQ 22</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shareables -->
+        <div class="menu-section">
+          <div class="section-title">Shareables &amp; Appetizers</div>
+          <div class="item-grid">
+            <div class="menu-item"><div><div class="item-name">Buffalo Chicken Dip</div><div class="item-desc">Cream cheese with buffalo sauce, ranch and shredded chicken. Served with tortilla chips</div></div><div class="item-price">9.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Philly Cheesesteak Egg Rolls</div><div class="item-desc">Crispy deep fried egg rolls with cheesesteak meat, peppers, onions and American cheese. Served with marinara</div></div><div class="item-price">9.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Crab Dip</div><div class="item-desc">Lumps of fresh crabmeat folded with cream cheese. Served with tortilla chips</div></div><div class="item-price">12.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Half Pound Steamed Shrimp</div><div class="item-desc">Served warm with Old Bay and melted butter</div></div><div class="item-price">13.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Steamed Clams</div><div class="item-desc">One pound of clams, steamed or Italiano with garlic butter, tomatoes and garlic bread</div></div><div class="item-price">12.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Duck Poppers</div><div class="item-desc">Duck breast stuffed with bleu cheese and pickled jalapeño, rolled in smoked bacon with sweet barbecue sauce</div></div><div class="item-price">12.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Bacon Wrapped Scallops</div><div class="item-desc">Succulent Chesapeake Bay scallops wrapped in smoked bacon</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Crab Stuffed Mushroom Caps</div><div class="item-desc">House made and stuffed with fresh blue crabmeat</div></div><div class="item-price">13.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Mozzarella Cheese Curds</div><div class="item-desc">Lightly breaded and fried until golden brown. Served with marinara</div></div><div class="item-price">9.95</div></div>
+            <div class="menu-item"><div><div class="item-name">OG Potato Skins</div><div class="item-desc">3 crispy fried potato skins with mozzarella, cheddar cheese sauce and bacon</div></div><div class="item-price">9.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Crabby Fries</div><div class="item-desc">Garlic Old Bay fries topped with crab, mozzarella and Creole sauce</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Dip Trio</div><div class="item-desc">Crab dip, buffalo chicken dip and queso with tortilla chips</div></div><div class="item-price">13.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Soft Pretzel Sticks</div><div class="item-desc">Warm Bavarian style pretzels with cheese sauce or whole grain mustard</div></div><div class="item-price">9.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Prime Rib Nachos</div><div class="item-desc">Tortilla chips with prime rib, cheddar and mozzarella, shredded lettuce, tomatoes and pickled jalapeños. Chicken nachos also available.</div></div><div class="item-price">12.95 – 14.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Prime Rib Quesadilla</div><div class="item-desc">Tender prime rib with cheddar and mozzarella in a warm tortilla. Served with salsa, sour cream and jalapeños. Chicken also available.</div></div><div class="item-price">12.95 – 14.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Pulled Pork Tots</div><div class="item-desc">Crispy tater tots with barbecue pulled pork and cheddar cheese</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">TB&amp;G Fries</div><div class="item-desc">Crispy fries with shaved New York strip, peppers, onions and provolone with roasted garlic aioli</div></div><div class="item-price">12.95</div></div>
+          </div>
+        </div>
+
+        <!-- From the Grill -->
+        <div class="menu-section">
+          <div class="section-title">From the Grill</div>
+          <p class="section-note">All entrees served with your choice of two sides.</p>
+          <div class="item-list">
+            <div class="menu-item"><div><div class="item-name">New York Strip</div><div class="item-desc">Thick cut 14 oz. choice strip steak</div></div><div class="item-price">24.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Delmonico</div><div class="item-desc">14 oz. thick cut</div></div><div class="item-price market">Market Price</div></div>
+            <div class="menu-item"><div><div class="item-name">Slow Roasted Prime Rib</div><div class="item-desc">14 oz. cut</div></div><div class="item-price market">Market Price</div></div>
+            <div class="menu-item"><div><div class="item-name">Pork Chops</div><div class="item-desc">Your choice of garlic rosemary or country fried</div></div><div class="item-price">17.95</div></div>
+          </div>
+        </div>
+
+        <!-- From the Sea -->
+        <div class="menu-section">
+          <div class="section-title">From the Sea</div>
+          <p class="section-note">All entrees served with your choice of two sides.</p>
+          <div class="item-list">
+            <div class="menu-item"><div><div class="item-name">Jumbo Lump Crab Cakes</div><div class="item-desc">Homemade broiled crab cake made from crab</div></div><div class="item-price">21.95 / 31.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Honey Soy Glazed Salmon</div><div class="item-desc">Fresh cut seared salmon filet</div></div><div class="item-price">20.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Broiled Haddock</div><div class="item-desc">Drenched in lemon butter. Served with two sides.</div></div><div class="item-price">18.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Shrimp Etouffee</div><div class="item-desc">Classic Louisiana stew with shrimp, celery, onions, green pepper and Cajun seasoning. Served over rice with side salad.</div></div><div class="item-price">18.95</div></div>
+          </div>
+        </div>
+
+        <!-- Chicken Entrees -->
+        <div class="menu-section">
+          <div class="section-title">Chicken Entrees</div>
+          <p class="section-note">Served with two sides.</p>
+          <div class="item-list">
+            <div class="menu-item"><div><div class="item-name">Chicken Chesapeake</div><div class="item-desc">Chicken breast topped with crab cake and Chesapeake sauce</div></div><div class="item-price">26.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Maple Mustard Chicken Breast</div><div class="item-desc">Baked chicken breast with a maple mustard glaze</div></div><div class="item-price">17.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Tuscan Chicken</div><div class="item-desc">Pan fried chicken breast with a luscious sun dried tomato and spinach cream sauce</div></div><div class="item-price">17.95</div></div>
+          </div>
+        </div>
+
+        <!-- Pasta -->
+        <div class="menu-section">
+          <div class="section-title">Pasta</div>
+          <p class="section-note">Served with house salad.</p>
+          <div class="item-list">
+            <div class="menu-item">
+              <div>
+                <div class="item-name">Build Your Own Pasta</div>
+                <div class="item-desc">
+                  <strong style="color:var(--cream)">Pasta:</strong> Spaghetti, Penne, Linguine, Fettuccine<br>
+                  <strong style="color:var(--cream)">Sauce:</strong> Marinara, Piccata, Marsala, Alfredo, Garlic Butter, Meat Sauce<br>
+                  <strong style="color:var(--cream)">Protein:</strong> Chicken +1 / Meatballs (2) +1 / Steak +3 / Crab, Scallops or Shrimp +2<br>
+                  <strong style="color:var(--cream)">Veggies:</strong> Broccoli, Asparagus, Brussels Sprouts, Mushrooms +1 each<br>
+                  <strong style="color:var(--cream)">Spice:</strong> Cajun, Inferno, Dirty-J
+                </div>
+              </div>
+              <div class="item-price">15.95</div>
+            </div>
+            <div class="menu-item"><div><div class="item-name">Clam Linguine</div><div class="item-desc">Your choice of spicy red or white sauce</div></div><div class="item-price">18.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Chicken Marsala</div><div class="item-desc">Pan seared battered chicken cutlets sauteed with mushrooms in a rich Marsala wine sauce</div></div><div class="item-price">17.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Chicken Parmesan</div><div class="item-desc">Breaded chicken cutlet topped with marinara sauce and mozzarella cheese. Served with your choice of pasta.</div></div><div class="item-price">17.95</div></div>
+          </div>
+        </div>
+
+        <!-- Burgers -->
+        <div class="menu-section">
+          <div class="section-title">Burgers</div>
+          <p class="section-note">Freshly made with premium Angus beef on a golden brioche roll with lettuce, tomato, red onion and kosher dill pickle spear. Served with Middleswarth potato chips. Add fries or tots +2.00.</p>
+          <div class="item-grid">
+            <div class="menu-item"><div><div class="item-name">Rise and Shine Burger</div><div class="item-desc">Fried egg, crispy bacon and choice of American, Swiss, provolone or cheddar</div></div><div class="item-price">12.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Western Burger</div><div class="item-desc">Bacon, barbeque sauce, onion rings, lettuce, tomato, onion, cheddar cheese</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Bacon Jam Pepper Jack Burger</div><div class="item-desc">Pepper jack cheese, homemade bacon jam, pickled jalapeños</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Mushroom Swiss Burger</div><div class="item-desc">Sauteed mushrooms and Swiss cheese</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Cheeseburger</div><div class="item-desc">Choice of American, Swiss, provolone, pepper jack or cheddar</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Patty Melt</div><div class="item-desc">Sauteed onions, Swiss cheese on grilled rye</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Ted's Tavern Burger</div><div class="item-desc">Caramelized onions, bacon and beer cheese on a pretzel roll</div></div><div class="item-price">11.95</div></div>
+          </div>
+        </div>
+
+        <!-- Handhelds -->
+        <div class="menu-section">
+          <div class="section-title">Handhelds, Wraps &amp; Subs</div>
+          <p class="section-note">Served with Middleswarth potato chips and kosher dill pickle spear. Add fries or tots +2.00. Upgrade to pretzel roll +1.50.</p>
+          <div class="item-grid">
+            <div class="menu-item"><div><div class="item-name">Reuben</div><div class="item-desc">Sliced corned beef, Swiss cheese and sauerkraut on rye with thousand island dressing</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Rachel</div><div class="item-desc">Sliced turkey, Swiss cheese and coleslaw on rye with thousand island dressing</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Barbecue Brisket Sandwich</div><div class="item-desc">Slow roasted brisket with homemade Bulleit Rye apple barbecue sauce on a brioche roll</div></div><div class="item-price">14.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Gyro / Chicken Gyro</div><div class="item-desc">Pita bread with lettuce, tomato, red onion and tzatziki sauce</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Fish Sandwich</div><div class="item-desc">Hand battered haddock filet on a brioche roll with lettuce, tomato and red onion</div></div><div class="item-price">14.95</div></div>
+            <div class="menu-item"><div><div class="item-name">TB&amp;G Sandwich</div><div class="item-desc">Shaved New York strip with marinated peppers and onions, provolone and garlic aioli on a ciabatta roll</div></div><div class="item-price">14.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Club Sandwich</div><div class="item-desc">Ham or turkey with bacon, lettuce, tomato and mayo on white toast</div></div><div class="item-price">12.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Crabcake Sandwich</div><div class="item-desc">Broiled crab meat on a brioche roll with lettuce, tomato and red onion</div></div><div class="item-price">18.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Pulled Pork Sandwich</div><div class="item-desc">Southern style barbecue pork on a brioche roll</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Spicy Southwest Chicken Sandwich</div><div class="item-desc">Sliced chicken with southwest spices, grilled onions, peppers and blended cheeses in a pita</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Cuban Sandwich</div><div class="item-desc">Roasted pork, baked ham, Swiss cheese, pickles and whole grain mustard</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Salmon BLT</div><div class="item-desc">Seared salmon filet on a ciabatta roll with bacon, lettuce, tomato and house made dill aioli</div></div><div class="item-price">16.95</div></div>
+            <div class="menu-item"><div><div class="item-name">French Dip</div><div class="item-desc">Classic pub style with shredded prime rib, sauteed onions and melted Swiss cheese</div></div><div class="item-price">14.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Nashville Fried Chicken Sandwich</div><div class="item-desc">Fried chicken with Nashville hot sauce, lettuce, tomato, red onion and pickles on a brioche roll</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Caprese Sandwich</div><div class="item-desc">Sliced chicken breast, fresh mozzarella, sliced tomatoes, mixed greens and pesto on a ciabatta roll</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Philly Cheesesteak Wrap</div><div class="item-desc">Grilled cheesesteak meat, grilled onions, green peppers and melted American cheese. Upgrade to NY Strip or prime rib +4.</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Chicken Bacon Ranch Wrap</div><div class="item-desc">Grilled chicken breast, crispy bacon, ranch dressing, lettuce, tomato and red onion</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Chicken Caesar Wrap</div><div class="item-desc">Grilled chicken breast with crispy romaine, parmesan and classic Caesar dressing</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Thai Chicken Wrap</div><div class="item-desc">Grilled sliced chicken with carrots, lettuce, pickled onions and peanut sauce</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Hot Wing Hoagie</div><div class="item-desc">Fried chicken strips smothered in hot sauce with lettuce, tomato and red onion</div></div><div class="item-price">10.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Cheese Steak</div><div class="item-desc">Grilled Philly cheesesteak meat with grilled onions, green peppers and melted American cheese. Upgrade to NY Strip or prime rib +4.</div></div><div class="item-price">11.95</div></div>
+            <div class="menu-item"><div><div class="item-name">Italian Sub</div><div class="item-desc">Genoa salami, ham, capicola, provolone, lettuce, tomato, red onion, oil and vinegar. Upgrade to pretzel roll +1.50.</div></div><div class="item-price">11.95</div></div>
+          </div>
+        </div>
+
+        <!-- Sides -->
+        <div class="menu-section">
+          <div class="section-title">Sides</div>
+          <div class="item-grid">
+            <div class="menu-item"><div><div class="item-name">Mashed Potatoes</div></div><div class="item-price"></div></div>
+            <div class="menu-item"><div><div class="item-name">Baked Potato</div></div><div class="item-price"></div></div>
+            <div class="menu-item"><div><div class="item-name">Twice Baked Potato</div></div><div class="item-price">+1.95</div></div>
+            <div class="menu-item"><div><div class="item-name">French Fries</div></div><div class="item-price"></div></div>
+            <div class="menu-item"><div><div class="item-name">Sweet Potato Fries</div></div><div class="item-price"></div></div>
+            <div class="menu-item"><div><div class="item-name">Tater Tots</div></div><div class="item-price"></div></div>
+            <div class="menu-item"><div><div class="item-name">Broccoli</div></div><div class="item-price"></div></div>
+            <div class="menu-item"><div><div class="item-name">Asparagus</div></div><div class="item-price"></div></div>
+            <div class="menu-item"><div><div class="item-name">Crispy Fried Brussels Sprouts</div></div><div class="item-price"></div></div>
+            <div class="menu-item"><div><div class="item-name">Caesar Salad</div></div><div class="item-price">+1.95</div></div>
+            <div class="menu-item"><div><div class="item-name">House Salad</div></div><div class="item-price">+1.95</div></div>
+          </div>
+        </div>
+
+        <p class="disclaimer">*Consuming raw or undercooked meats, seafood, shellfish or poultry may increase your risk of foodborne illness, especially if you have medical conditions. Please be aware our restaurant uses beef tallow in our food preparation. Ted's reserves the right to add 18% gratuity to tables of 10 or larger.</p>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════
+         COCKTAILS
+    ══════════════════════════════ -->
+    <div class="menu-panel" id="tab-cocktails">
+      <div class="container">
+        <div class="menu-section">
+          <div class="section-title">Craft Cocktails</div>
+          <div class="cocktail-grid">
+            <div class="cocktail-card">
+              <div class="cocktail-badge">Cocktail</div>
+              <div class="cocktail-name">Bad to the Bone</div>
+              <div class="cocktail-ingredients">Maker's Mark Bourbon, Cinnamon Pomegranate Syrup, Grapefruit, Lime, Black Walnut Bitters, Cinnamon</div>
+            </div>
+            <div class="cocktail-card">
+              <div class="cocktail-badge">Cocktail</div>
+              <div class="cocktail-name">Black Widow</div>
+              <div class="cocktail-ingredients">Gracias a Dios Mezcal, Casamigos Reposado Tequila, Spiced Pear Syrup, Honey Syrup, Lemon, Pear</div>
+            </div>
+            <div class="cocktail-card">
+              <div class="cocktail-badge">Cocktail</div>
+              <div class="cocktail-name">Spice Trade</div>
+              <div class="cocktail-ingredients">Hendrick's Gin, Pear Nectar, Rosemary Clove Syrup, Club Soda</div>
+            </div>
+            <div class="cocktail-card">
+              <div class="cocktail-badge">Cocktail</div>
+              <div class="cocktail-name">Late Check-Out</div>
+              <div class="cocktail-ingredients">Pecan Infused Smirnoff Vanilla Vodka, Pecan Syrup, Maple Syrup, Espresso, Vanilla Sweet Cream</div>
+            </div>
+            <div class="cocktail-card">
+              <div class="cocktail-badge">Cocktail</div>
+              <div class="cocktail-name">Golden Hour</div>
+              <div class="cocktail-ingredients">Golden Raisin Infused Bacardi Rum, Vanilla Chai Syrup, Lime, Club Soda</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-section">
+          <div class="section-title">Mocktails</div>
+          <div class="cocktail-grid">
+            <div class="cocktail-card">
+              <div class="cocktail-badge mocktail">Mocktail</div>
+              <div class="cocktail-name">Papa Don't Peach</div>
+              <div class="cocktail-ingredients">Ritual Whiskey Alternative, Cinnamon Peach Syrup, Orange Juice, Lemon Juice, Cinnamon</div>
+            </div>
+            <div class="cocktail-card">
+              <div class="cocktail-badge mocktail">Mocktail</div>
+              <div class="cocktail-name">Card Shark</div>
+              <div class="cocktail-ingredients">Ritual Rum Alternative, Ginger Nutmeg Syrup, Apple Cider, Cinnamon</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="logo">Ted's <span>Bar &amp; Grill</span></div>
+          <p>7300 Allentown Blvd, Harrisburg, PA 17112<br>717-652-3832</p>
+        </div>
+        <div class="footer-links-col">
+          <a href="index.html">Home</a>
+          <a href="menu.html">Menu</a>
+          <a href="index.html#events">Events</a>
+          <a href="index.html#catering">Catering</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Ted's Bar &amp; Grill. Harrisburg, PA. All rights reserved.</p>
+        <p>Eat well. Drink cold. Stay local.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    // Mobile nav
+    document.getElementById('burger').addEventListener('click', () => {
+      const links = document.getElementById('navLinks');
+      const open = links.getAttribute('data-open') === '1';
+      if (open) {
+        links.removeAttribute('style');
+        links.removeAttribute('data-open');
+      } else {
+        Object.assign(links.style, {
+          display: 'flex', flexDirection: 'column', position: 'absolute',
+          top: '100%', left: '0', right: '0',
+          background: 'rgba(14,9,4,.97)', backdropFilter: 'blur(14px)',
+          padding: '1.5rem 2rem', gap: '1.25rem',
+          boxShadow: '0 8px 24px rgba(0,0,0,.4)',
+          borderTop: '1px solid rgba(200,132,13,.15)'
+        });
+        links.setAttribute('data-open', '1');
+      }
+    });
+  </script>
+</body>
+</html>
