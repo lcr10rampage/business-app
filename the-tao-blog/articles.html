@@ -331,7 +331,7 @@
       <li><a href="faq.html">FAQ</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="contact.html" class="btn btn-primary">Get in touch</a>
+      <a href="contact.html#contact" class="btn btn-primary">Get in touch</a>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
     </div>
   </div>
@@ -343,7 +343,7 @@
   <a href="events.html">Events</a>
   <a href="about.html">About</a>
   <a href="faq.html">FAQ</a>
-  <a href="contact.html" class="btn btn-primary">Get in touch</a>
+  <a href="contact.html#contact" class="btn btn-primary">Get in touch</a>
 </div>
 <header class="page-hero">
   <div class="page-hero-bg" style="background-image:url('assets/img/header.jpg')" aria-hidden="true"></div>
@@ -355,13 +355,13 @@
   </div>
 </header>
 <section class="sec"><div class="wrap"><div class="index-list">
-  <a href="articles.html" class="idx-item reveal"><span class="n">01</span><div><h3>The Hidden Cost of Constant Readiness</h3><p>The nervous system braced for everything pays a quiet, compounding price over time.</p><p class="m" style="margin-top:0.5rem">Essay</p></div></a>
-  <a href="articles.html" class="idx-item reveal"><span class="n">02</span><div><h3>Why Effort Fails When You Are Already Tired</h3><p>Pushing harder from a place of depletion rarely produces what genuine rest would.</p><p class="m" style="margin-top:0.5rem">Essay</p></div></a>
-  <a href="articles.html" class="idx-item reveal"><span class="n">03</span><div><h3>Relaxation Is a Skill Most Adults Never Learn</h3><p>We treat rest as a switch to flip. It is much closer to a practice we build.</p><p class="m" style="margin-top:0.5rem">Essay</p></div></a>
-  <a href="articles.html" class="idx-item reveal"><span class="n">04</span><div><h3>Why Calm Is Not a Personality Trait</h3><p>Calm is trainable. It is a state the body can be taught to find and return to.</p><p class="m" style="margin-top:0.5rem">Essay</p></div></a>
-  <a href="articles.html" class="idx-item reveal"><span class="n">05</span><div><h3>Qigong and Tai Chi</h3><p>An overview of the moving practices, and where a beginner can sensibly begin.</p><p class="m" style="margin-top:0.5rem">Guide</p></div></a>
-  <a href="articles.html" class="idx-item reveal"><span class="n">06</span><div><h3>Meditation is Like Work</h3><p>Showing up matters more than intensity. The best session is the one you actually do.</p><p class="m" style="margin-top:0.5rem">Reflection</p></div></a>
-  <a href="articles.html" class="idx-item reveal"><span class="n">07</span><div><h3>Mental Health and Organizational Support</h3><p>How workplaces quietly shape the nervous systems of the people inside them.</p><p class="m" style="margin-top:0.5rem">Leadership</p></div></a>
+  <div class="idx-item reveal"><span class="n">01</span><div><h3>The Hidden Cost of Constant Readiness</h3><p>The nervous system braced for everything pays a quiet, compounding price over time.</p><p class="m" style="margin-top:0.5rem">Essay</p></div></div>
+  <div class="idx-item reveal"><span class="n">02</span><div><h3>Why Effort Fails When You Are Already Tired</h3><p>Pushing harder from a place of depletion rarely produces what genuine rest would.</p><p class="m" style="margin-top:0.5rem">Essay</p></div></div>
+  <div class="idx-item reveal"><span class="n">03</span><div><h3>Relaxation Is a Skill Most Adults Never Learn</h3><p>We treat rest as a switch to flip. It is much closer to a practice we build.</p><p class="m" style="margin-top:0.5rem">Essay</p></div></div>
+  <div class="idx-item reveal"><span class="n">04</span><div><h3>Why Calm Is Not a Personality Trait</h3><p>Calm is trainable. It is a state the body can be taught to find and return to.</p><p class="m" style="margin-top:0.5rem">Essay</p></div></div>
+  <div class="idx-item reveal"><span class="n">05</span><div><h3>Qigong and Tai Chi</h3><p>An overview of the moving practices, and where a beginner can sensibly begin.</p><p class="m" style="margin-top:0.5rem">Guide</p></div></div>
+  <div class="idx-item reveal"><span class="n">06</span><div><h3>Meditation is Like Work</h3><p>Showing up matters more than intensity. The best session is the one you actually do.</p><p class="m" style="margin-top:0.5rem">Reflection</p></div></div>
+  <div class="idx-item reveal"><span class="n">07</span><div><h3>Mental Health and Organizational Support</h3><p>How workplaces quietly shape the nervous systems of the people inside them.</p><p class="m" style="margin-top:0.5rem">Leadership</p></div></div>
 </div></div></section>
 <section class="sec alt"><div class="wrap"><div class="cta-band reveal"><h2>Prefer to practice?</h2><p>Reading is a fine place to start. When you are ready to feel it in the body, the video series take you step by step.</p><a href="courses.html" class="btn btn-primary">See the courses</a></div></div></section>
 
@@ -386,7 +386,7 @@
         <ul>
           <li><a href="about.html">About Andrew</a></li>
           <li><a href="faq.html">FAQ</a></li>
-          <li><a href="contact.html">Get in touch</a></li>
+          <li><a href="contact.html#contact">Get in touch</a></li>
           <li><a href="mailto:mccartandrew@gmail.com">Email</a></li>
         </ul>
       </div>
@@ -421,6 +421,11 @@
     });
     window.addEventListener('pageshow', function(){ document.body.classList.remove('is-leaving'); });
   }
+  // Articles are hover-only: block navigation but keep hover styling intact.
+  document.querySelectorAll('.idx-item, .feature').forEach(function(el){
+    el.style.cursor='default';
+    el.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); });
+  });
   var reveals=document.querySelectorAll('.reveal');
   if(reduce || !('IntersectionObserver' in window)){ reveals.forEach(function(el){ el.classList.add('in'); }); }
   else { var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:0.14, rootMargin:'0px 0px -8% 0px'}); reveals.forEach(function(el){ io.observe(el); }); }

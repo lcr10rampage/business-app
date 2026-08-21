@@ -217,9 +217,10 @@
   .qa button { width:100%; background:none; border:none; cursor:pointer; text-align:left; display:flex; justify-content:space-between; align-items:flex-start; gap:1.5rem; padding:1.5rem 0; font-family:"DM Serif Display",serif; font-size:clamp(1.15rem,1rem + 0.6vw,1.45rem); color:var(--ink); line-height:1.25; }
   .qa button .ico { flex:none; width:30px; height:30px; border-radius:50%; border:1px solid var(--line); display:grid; place-items:center; color:var(--teal-800); transition:transform var(--t),background var(--t),color var(--t); }
   .qa[open] button .ico, .qa.open button .ico { background:var(--teal-800); color:#fff; transform:rotate(45deg); }
-  .qa .ans { max-height:0; overflow:hidden; transition:max-height 0.5s var(--ease); }
+  .qa .ans { max-height:0; overflow:hidden; transition:max-height 1.4s var(--ease); }
   .qa.open .ans { max-height:900px; }
-  .qa .ans-inner { padding:0 0 1.6rem; color:var(--muted); }
+  .qa .ans-inner { padding:0 0 1.6rem; color:var(--muted); opacity:0; transform:translateY(14px); transition:opacity 1.4s var(--ease),transform 1.4s var(--ease); }
+  .qa.open .ans-inner { opacity:1; transform:none; transition-delay:0.1s; }
   .qa .ans-inner a { color:var(--accent-deep); text-decoration:underline; }
 
   /* Timeline (events archive) */
@@ -314,6 +315,8 @@
     .feature img { transition:none !important; }
     .breath::before { animation:none !important; }
     .qa .ans { transition:none !important; }
+    .qa .ans-inner { transition:none !important; }
+    .qa.open .ans-inner { opacity:1 !important; transform:none !important; }
     ::view-transition-old(root), ::view-transition-new(root) { animation:none !important; }
   }
 </style>
@@ -331,7 +334,7 @@
       <li><a href="faq.html" class="active">FAQ</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="contact.html" class="btn btn-primary">Get in touch</a>
+      <a href="contact.html#contact" class="btn btn-primary">Get in touch</a>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
     </div>
   </div>
@@ -343,7 +346,7 @@
   <a href="events.html">Events</a>
   <a href="about.html">About</a>
   <a href="faq.html">FAQ</a>
-  <a href="contact.html" class="btn btn-primary">Get in touch</a>
+  <a href="contact.html#contact" class="btn btn-primary">Get in touch</a>
 </div>
 <header class="page-hero">
   <div class="page-hero-bg" style="background-image:url('assets/img/header.jpg')" aria-hidden="true"></div>
@@ -364,7 +367,7 @@
   <div class="qa reveal"><button aria-expanded="false"><span>How do I balance star and planet energy in the orbit?</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="ans"><div class="ans-inner"><p>Balance it with at least as much grounding earth energy, or more. The more earth energy you absorb, the more star and planet energy you can actually hold. Grounding deep into the organs, bones, and tendons lets you receive far more, safely.</p></div></div></div>
   <div class="qa reveal"><button aria-expanded="false"><span>Any tips for moving the energy upward?</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="ans"><div class="ans-inner"><p>First take the energy to the lower tan tien, where it can be stored safely and nourish the vital organs. The orbit will not circulate on its own if it is blocked, so gentle practice, and using the hands to massage the points, helps open the pathway.</p></div></div></div>
 </div>
-  <div style="text-align:center; margin-top:2.5rem" class="reveal"><p style="color:var(--muted)">Still curious? Andrew is happy to help you find a starting point.</p><a href="contact.html" class="btn btn-primary">Ask a question</a></div>
+  <div style="text-align:center; margin-top:2.5rem" class="reveal"><p style="color:var(--muted)">Still curious? Andrew is happy to help you find a starting point.</p><a href="contact.html#contact" class="btn btn-primary">Ask a question</a></div>
   </div></section>
 
 <footer>
@@ -388,7 +391,7 @@
         <ul>
           <li><a href="about.html">About Andrew</a></li>
           <li><a href="faq.html">FAQ</a></li>
-          <li><a href="contact.html">Get in touch</a></li>
+          <li><a href="contact.html#contact">Get in touch</a></li>
           <li><a href="mailto:mccartandrew@gmail.com">Email</a></li>
         </ul>
       </div>

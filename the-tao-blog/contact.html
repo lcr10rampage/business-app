@@ -331,7 +331,7 @@
       <li><a href="faq.html">FAQ</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="contact.html" class="btn btn-primary">Get in touch</a>
+      <a href="contact.html#contact" class="btn btn-primary">Get in touch</a>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
     </div>
   </div>
@@ -343,7 +343,7 @@
   <a href="events.html">Events</a>
   <a href="about.html">About</a>
   <a href="faq.html">FAQ</a>
-  <a href="contact.html" class="btn btn-primary">Get in touch</a>
+  <a href="contact.html#contact" class="btn btn-primary">Get in touch</a>
 </div>
 <header class="page-hero">
   <div class="page-hero-bg" style="background-image:url('assets/img/header.jpg')" aria-hidden="true"></div>
@@ -354,7 +354,7 @@
     <div class="crumbs"><a href="index.html">Home</a> / Contact</div>
   </div>
 </header>
-<section class="sec">
+<section class="sec" id="contact" style="scroll-margin-top:90px;">
   <div class="wrap contact-grid">
     <div>
       <span class="eyebrow reveal">Contact</span>
@@ -402,7 +402,7 @@
         <ul>
           <li><a href="about.html">About Andrew</a></li>
           <li><a href="faq.html">FAQ</a></li>
-          <li><a href="contact.html">Get in touch</a></li>
+          <li><a href="contact.html#contact">Get in touch</a></li>
           <li><a href="mailto:mccartandrew@gmail.com">Email</a></li>
         </ul>
       </div>
@@ -440,6 +440,27 @@
   var reveals=document.querySelectorAll('.reveal');
   if(reduce || !('IntersectionObserver' in window)){ reveals.forEach(function(el){ el.classList.add('in'); }); }
   else { var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:0.14, rootMargin:'0px 0px -8% 0px'}); reveals.forEach(function(el){ io.observe(el); }); }
+
+  // Landing here via a "Get in touch" link (#contact): jump straight to the form,
+  // past the hero image. Forced because view transitions + smooth-scroll can eat the
+  // browser's native fragment jump on load.
+  // Any time this page is opened — from any page, any navigation type — glide down
+  // to the contact form past the hero image. Runs on every visit, not only #contact.
+  // Guarded so it plays exactly ONCE per visit (view-transition nav fires both
+  // 'pagereveal' and 'load', which would otherwise run the scroll twice).
+  var contactScrolled=false;
+  function jumpToContact(){
+    if(contactScrolled) return;
+    var t=document.getElementById('contact');
+    if(!t) return;
+    contactScrolled=true;
+    // Start at the top, then smooth-scroll down so the glide is always visible.
+    window.scrollTo({top:0, behavior:'instant'});
+    requestAnimationFrame(function(){ t.scrollIntoView({behavior:'smooth', block:'start'}); });
+  }
+  window.addEventListener('load', function(){ requestAnimationFrame(function(){ requestAnimationFrame(jumpToContact); }); });
+  window.addEventListener('pagereveal', function(){ requestAnimationFrame(jumpToContact); });
+  window.addEventListener('pageshow', function(e){ if(e.persisted){ contactScrolled=false; jumpToContact(); } });
 </script>
 </body>
 </html>
