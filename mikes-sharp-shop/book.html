@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Book Online | Mike's Sharp Shop</title>
+<meta name="description" content="Book knife, scissors, and drill bit sharpening with Mike's Sharp Shop. Knife sharpening from $8, scissors from $15. Same-week turnaround in Louisville, KY." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="mark"><span>M</span></span> Mike's Sharp Shop</a>
+    <nav class="nav-links">
+      <a class="link" href="index.html">Home</a>
+      <a class="link" href="index.html#services">Services</a>
+      <a class="link" href="blog.html">Blog</a>
+      <a class="link" href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="signin.html" class="signin">Sign In</a>
+      <a href="book.html" class="btn btn-primary">Book Online</a>
+      <button class="hamburger" aria-label="Open menu" id="openMenu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div id="drawer" aria-hidden="true">
+  <button class="close" aria-label="Close menu" id="closeMenu">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="index.html#services">Services</a>
+  <a href="book.html">Book Online</a>
+  <a href="blog.html">Blog</a>
+  <a href="index.html#tips">Care Tips</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="signin.html">Sign In</a>
+  <a href="book.html" class="btn btn-primary">Book Online</a>
+</div>
+
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero" id="top">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1615063053421-e8cd1d71d5f2?w=1800&q=80')"></div>
+  <div class="wrap page-hero-inner">
+    <span class="eyebrow reveal">Book Online</span>
+    <h1 class="reveal d1">Reserve your edge.</h1>
+    <p class="reveal d2">Pick a service below and send a request. We confirm your drop-off window and have most orders ready the same week.</p>
+  </div>
+</section>
+
+<!-- ================= BOOKABLE SERVICES ================= -->
+<section class="book" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Services &amp; Pricing</span>
+      <h2>Choose what needs an edge.</h2>
+      <p>Straightforward pricing, no surprises. Bring one item or a whole drawer full.</p>
+    </div>
+
+    <div class="book-grid">
+      <article class="book-card reveal">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l7 7-9 9-7 0 0-7 9-9z"/><path d="M11 6l7 7"/></svg></div>
+        <h3>Knife Sharpening</h3>
+        <p>Expert sharpening for chef's precision. Chef knives, paring knives, cleavers, and pocket knives.</p>
+        <div class="book-price">From <b>$8</b> per item</div>
+        <a href="#request" class="btn btn-primary">Book Now</a>
+      </article>
+
+      <article class="book-card reveal d1">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.12 15.88"/><path d="M14.47 14.48L20 20"/><path d="M8.12 8.12L12 12"/></svg></div>
+        <h3>Scissors Sharpening</h3>
+        <p>Restore your shears to peak performance. Kitchen shears, sewing scissors, and garden pruners.</p>
+        <div class="book-price">From <b>$15</b> per pair</div>
+        <a href="#request" class="btn btn-primary">Book Now</a>
+      </article>
+
+      <article class="book-card reveal d2">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M9 8h6l-1.5 9a1.5 1.5 0 0 1-3 0z"/><path d="M12 20v2"/></svg></div>
+        <h3>Drill Bit Sharpening</h3>
+        <p>Maintain power and precision in every drill. Twist bits and spade bits ground back to a clean cutting point.</p>
+        <div class="book-price">From <b>$8</b> per item</div>
+        <a href="#request" class="btn btn-primary">Book Now</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BOOKING REQUEST ================= -->
+<section class="contact cut-both" id="request" style="background:var(--graphite);">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-inline:auto;text-align:center;">
+      <span class="eyebrow" style="color:#fff;">Request a Booking</span>
+      <h2 style="color:#fff;">Tell us what you are bringing in.</h2>
+      <p style="color:rgba(255,255,255,0.82);">Send the details and we will reply the same business day with your drop-off window. Prefer to talk? Call 502-296-1815.</p>
+    </div>
+    <div style="max-width:640px;margin:0 auto;">
+      <form class="card reveal d1" onsubmit="return handleSubmit(event)">
+        <div class="form-row">
+          <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required /></div>
+          <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="Best number to reach you" autocomplete="tel" required /></div>
+        </div>
+        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required /></div>
+        <div class="form-row">
+          <div class="field"><label for="service">Service</label>
+            <select id="service" name="service" autocomplete="off">
+              <option>Knife Sharpening (from $8)</option>
+              <option>Scissors Sharpening (from $15)</option>
+              <option>Drill Bit Sharpening (from $8)</option>
+              <option>Tool or blade repair</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="field"><label for="qty">How many items?</label><input id="qty" name="qty" type="number" min="1" value="1" autocomplete="off" /></div>
+        </div>
+        <div class="field"><label for="preferred">Preferred drop-off day</label><input id="preferred" name="preferred" type="date" autocomplete="off" /></div>
+        <div class="field"><label for="message">Details</label><textarea id="message" name="message" placeholder="Type of blades, condition, anything we should know" autocomplete="off"></textarea></div>
+        <button type="submit" class="btn btn-primary">Send Booking Request</button>
+        <p class="form-note">This sends a request, not a charge. We confirm timing before any work begins.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html" class="brand"><span class="mark"><span>M</span></span> Mike's Sharp Shop</a>
+        <p class="tagline">Precision craft care and local expert advice. Bringing a razor edge back to the tools you rely on every day.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul><li><a href="index.html#services">Services</a></li><li><a href="book.html">Book Online</a></li><li><a href="blog.html">Blog</a></li><li><a href="index.html#tips">Care Tips</a></li></ul>
+      </div>
+      <div>
+        <h4>Account</h4>
+        <ul><li><a href="signin.html">Sign In</a></li><li><a href="index.html#reviews">Reviews</a></li><li><a href="index.html#contact">Contact</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>&copy; 2026 Mike's Sharp Shop. All rights reserved.</span>
+      <span>Louisville, KY &middot; 502-296-1815</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

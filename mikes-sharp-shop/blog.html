@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blog | Mike's Sharp Shop</title>
+<meta name="description" content="Sharpening tips and tool care advice from Mike's Sharp Shop. Knife maintenance for home chefs, choosing a sharpening service, and getting the most from your mower blades." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="mark"><span>M</span></span> Mike's Sharp Shop</a>
+    <nav class="nav-links">
+      <a class="link" href="index.html">Home</a>
+      <a class="link" href="index.html#services">Services</a>
+      <a class="link" href="blog.html" aria-current="page">Blog</a>
+      <a class="link" href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="signin.html" class="signin">Sign In</a>
+      <a href="book.html" class="btn btn-primary">Book Online</a>
+      <button class="hamburger" aria-label="Open menu" id="openMenu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div id="drawer" aria-hidden="true">
+  <button class="close" aria-label="Close menu" id="closeMenu">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="index.html#services">Services</a>
+  <a href="book.html">Book Online</a>
+  <a href="blog.html">Blog</a>
+  <a href="index.html#tips">Care Tips</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="signin.html">Sign In</a>
+  <a href="book.html" class="btn btn-primary">Book Online</a>
+</div>
+
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero" id="top">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1668853060178-2d53667b7345?w=1800&q=80')"></div>
+  <div class="wrap page-hero-inner">
+    <span class="eyebrow reveal">The Sharp Shop Blog</span>
+    <h1 class="reveal d1">Tips from the bench.</h1>
+    <p class="reveal d2">Straight talk on keeping knives, shears, and tools in fighting shape, from the people who sharpen them every day.</p>
+  </div>
+</section>
+
+<!-- ================= POSTS ================= -->
+<section class="blog">
+  <div class="wrap">
+    <div class="post-grid">
+      <article class="post-card reveal">
+        <a href="#" class="post-thumb"><img src="https://images.unsplash.com/photo-1596299085622-4f96269e5bc7?w=900&q=80" alt="A sharp chef's knife on a work surface" loading="lazy" /></a>
+        <div class="post-body">
+          <div class="post-meta">Jul 31, 2026 &middot; 4 min read</div>
+          <h3>Essential Knife Sharpening Tips for Every Home Chef</h3>
+          <p>Sharp knives are the foundation of good cooking. Dull blades create frustration and safety concerns, so here are the fundamental maintenance techniques that keep every slice, chop, and dice effortless and precise.</p>
+          <div class="post-foot">
+            <div class="post-author"><span class="avatar">MH</span><span class="name">Mike Hubrich</span></div>
+            <a href="#" class="post-read">Read More &rsaquo;</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="post-card reveal d1">
+        <a href="#" class="post-thumb"><img src="https://images.unsplash.com/photo-1577398628388-516477602b3b?w=900&q=80" alt="Chef knives laid out on a surface" loading="lazy" /></a>
+        <div class="post-body">
+          <div class="post-meta">Jul 31, 2026 &middot; 3 min read</div>
+          <h3>How to Choose the Right Sharpening Service for You</h3>
+          <p>From kitchen knives to gardening shears to woodworking chisels, the right sharpening service improves both efficiency and safety. Here is how to evaluate your options and pick the one that fits your tools.</p>
+          <div class="post-foot">
+            <div class="post-author"><span class="avatar">MH</span><span class="name">Mike Hubrich</span></div>
+            <a href="#" class="post-read">Read More &rsaquo;</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="post-card reveal d2">
+        <a href="#" class="post-thumb"><img src="https://images.unsplash.com/photo-1458245201577-fc8a130b8829?w=900&q=80" alt="A lawn mower on freshly cut grass" loading="lazy" /></a>
+        <div class="post-body">
+          <div class="post-meta">Jul 31, 2026 &middot; 4 min read</div>
+          <h3>Maximize Lawn Mower Performance with Sharp Blades</h3>
+          <p>Lawn care quality starts at the blade. Well-maintained mower blades run more efficiently and promote healthier grass. Here are the techniques for keeping yours cutting clean all season long.</p>
+          <div class="post-foot">
+            <div class="post-author"><span class="avatar">MH</span><span class="name">Mike Hubrich</span></div>
+            <a href="#" class="post-read">Read More &rsaquo;</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA STRIP ================= -->
+<section class="trust cut-both">
+  <div class="wrap" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;">
+    <div>
+      <h2 style="color:#fff;font-size:clamp(1.8rem,4vw,2.8rem);">Ready to put these tips to work?</h2>
+      <p style="color:rgba(255,255,255,0.75);margin-top:0.5rem;">Book a sharpening and feel the difference on your next cut.</p>
+    </div>
+    <a href="book.html" class="btn btn-primary">Book Online</a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html" class="brand"><span class="mark"><span>M</span></span> Mike's Sharp Shop</a>
+        <p class="tagline">Precision craft care and local expert advice. Bringing a razor edge back to the tools you rely on every day.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul><li><a href="index.html#services">Services</a></li><li><a href="book.html">Book Online</a></li><li><a href="blog.html">Blog</a></li><li><a href="index.html#tips">Care Tips</a></li></ul>
+      </div>
+      <div>
+        <h4>Account</h4>
+        <ul><li><a href="signin.html">Sign In</a></li><li><a href="index.html#reviews">Reviews</a></li><li><a href="index.html#contact">Contact</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>&copy; 2026 Mike's Sharp Shop. All rights reserved.</span>
+      <span>Louisville, KY &middot; 502-296-1815</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

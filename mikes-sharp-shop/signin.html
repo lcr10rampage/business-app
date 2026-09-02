@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign In | Mike's Sharp Shop</title>
+<meta name="description" content="Sign in to your Mike's Sharp Shop account to manage bookings and see order notifications." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="mark"><span>M</span></span> Mike's Sharp Shop</a>
+    <nav class="nav-links">
+      <a class="link" href="index.html">Home</a>
+      <a class="link" href="index.html#services">Services</a>
+      <a class="link" href="blog.html">Blog</a>
+      <a class="link" href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="signin.html" class="signin">Sign In</a>
+      <a href="book.html" class="btn btn-primary">Book Online</a>
+      <button class="hamburger" aria-label="Open menu" id="openMenu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div id="drawer" aria-hidden="true">
+  <button class="close" aria-label="Close menu" id="closeMenu">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="index.html#services">Services</a>
+  <a href="book.html">Book Online</a>
+  <a href="blog.html">Blog</a>
+  <a href="index.html#tips">Care Tips</a>
+  <a href="index.html#contact">Contact</a>
+  <a href="signin.html">Sign In</a>
+  <a href="book.html" class="btn btn-primary">Book Online</a>
+</div>
+
+<!-- ================= AUTH ================= -->
+<section class="auth" style="padding-top:calc(72px + clamp(3rem,7vw,6rem));">
+  <div class="wrap">
+    <div class="auth-card reveal">
+      <span class="eyebrow">Account Access</span>
+      <h1 style="margin-top:0.6rem;">Sign In</h1>
+      <p>Sign in to manage your bookings and see order notifications when your blades are ready for pickup.</p>
+      <form onsubmit="return handleSubmit(event)">
+        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required /></div>
+        <div class="field"><label for="password">Password</label><input id="password" name="password" type="password" placeholder="Your password" autocomplete="current-password" required /></div>
+        <button type="submit" class="btn btn-primary">Sign In</button>
+      </form>
+      <p class="auth-alt">New here? <a href="book.html">Book online</a> to create your account.</p>
+      <p class="auth-note">Accounts and notifications are part of the online booking system. Not set up yet, so this form is a placeholder.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html" class="brand"><span class="mark"><span>M</span></span> Mike's Sharp Shop</a>
+        <p class="tagline">Precision craft care and local expert advice. Bringing a razor edge back to the tools you rely on every day.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul><li><a href="index.html#services">Services</a></li><li><a href="book.html">Book Online</a></li><li><a href="blog.html">Blog</a></li><li><a href="index.html#tips">Care Tips</a></li></ul>
+      </div>
+      <div>
+        <h4>Account</h4>
+        <ul><li><a href="signin.html">Sign In</a></li><li><a href="index.html#reviews">Reviews</a></li><li><a href="index.html#contact">Contact</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>&copy; 2026 Mike's Sharp Shop. All rights reserved.</span>
+      <span>Louisville, KY &middot; 502-296-1815</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
