@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mike's Sharp Shop | Expert Knife &amp; Tool Sharpening</title>
+<meta name="description" content="Mike's Sharp Shop brings a razor edge back to your knives, scissors, and tools. Flat $8 per item, same-week turnaround, family-owned and local." />
+
+<!-- Fonts: DM Serif Display (craft/heritage display) + DM Sans (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    /* Warm stone palette (preserved from original) */
+    --stone-50:  #f7f3ec;
+    --stone-100: #efe8dc;
+    --stone-200: #ded1bd;
+    --stone-300: #c8b79c;
+
+    /* Off-black ink, never pure #000 */
+    --ink:       #1b1714;
+    --ink-soft:  #423a32;
+    --ink-mute:  #6b6055;
+
+    /* Single accent: forged blade steel */
+    --steel:      #37596e;
+    --steel-dark: #274353;
+    --steel-tint: #e4ebef;
+
+    /* Functional only: rating amber (star glyphs) */
+    --amber: #c98a2b;
+
+    --paper: #ffffff;
+
+    --radius-sm: 8px;
+    --radius:    16px;
+    --radius-lg: 26px;
+
+    --shadow-sm: 0 2px 8px rgba(27, 23, 20, 0.06);
+    --shadow:    0 14px 40px rgba(27, 23, 20, 0.12);
+    --shadow-lg: 0 30px 70px rgba(27, 23, 20, 0.22);
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --t-fast: 0.25s var(--ease);
+    --t:      0.45s var(--ease);
+
+    --maxw: 1200px;
+    --pad: clamp(1.25rem, 5vw, 4rem);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "DM Sans", system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--stone-50);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .serif {
+    font-family: "DM Serif Display", Georgia, serif;
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--pad); }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--steel);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 26px; height: 1.5px;
+    background: var(--steel);
+    display: inline-block;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.9rem 1.6rem;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    transition: transform var(--t-fast), background var(--t-fast), color var(--t-fast), box-shadow var(--t-fast);
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--steel); color: #fff; }
+  .btn-primary:hover { background: var(--steel-dark); box-shadow: var(--shadow); }
+  .btn-primary:active { transform: translateY(1px); }
+
+  .btn-ghost { background: transparent; color: var(--ink); border-color: rgba(27,23,20,0.25); }
+  .btn-ghost:hover { border-color: var(--ink); }
+  .btn-ghost:active { transform: translateY(1px); }
+
+  .btn-light { background: rgba(255,255,255,0.12); color: #fff; border-color: rgba(255,255,255,0.4); backdrop-filter: blur(4px); }
+  .btn-light:hover { background: rgba(255,255,255,0.22); }
+
+  /* ---------- Nav ---------- */
+  header#nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 100;
+    transition: background var(--t), box-shadow var(--t), border-color var(--t);
+    border-bottom: 1px solid transparent;
+  }
+  header#nav.scrolled {
+    background: rgba(247, 243, 236, 0.82);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    box-shadow: var(--shadow-sm);
+    border-bottom-color: rgba(27,23,20,0.08);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 74px;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding-inline: var(--pad);
+  }
+  .brand { display: flex; align-items: center; gap: 0.6rem; font-family: "DM Serif Display", serif; font-size: 1.35rem; color: var(--ink); }
+  .brand .mark {
+    width: 34px; height: 34px; border-radius: 9px;
+    background: var(--steel); color: #fff;
+    display: grid; place-items: center;
+    font-size: 1.15rem;
+    box-shadow: inset 0 -3px 0 rgba(0,0,0,0.18);
+  }
+  header#nav:not(.scrolled) .brand { color: #fff; }
+  header#nav:not(.scrolled) .brand .mark { background: rgba(255,255,255,0.16); backdrop-filter: blur(4px); }
+
+  .nav-links { display: flex; align-items: center; gap: 2rem; }
+  .nav-links a.link { font-weight: 500; font-size: 0.98rem; position: relative; padding-block: 4px; transition: color var(--t-fast); }
+  header#nav:not(.scrolled) .nav-links a.link { color: rgba(255,255,255,0.9); }
+  .nav-links a.link::after {
+    content: ""; position: absolute; left: 0; bottom: 0;
+    height: 2px; width: 0; background: var(--steel);
+    transition: width var(--t-fast);
+  }
+  header#nav:not(.scrolled) .nav-links a.link::after { background: #fff; }
+  .nav-links a.link:hover::after { width: 100%; }
+
+  .nav-cta { display: flex; align-items: center; gap: 1rem; }
+
+  .hamburger {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    width: 44px; height: 44px; padding: 10px;
+  }
+  .hamburger span { display: block; height: 2px; background: var(--ink); border-radius: 2px; transition: transform var(--t-fast), opacity var(--t-fast); }
+  .hamburger span + span { margin-top: 6px; }
+  header#nav:not(.scrolled) .hamburger span { background: #fff; }
+  .mobile-menu[data-open="true"] .hamburger { position: relative; }
+
+  /* Mobile drawer */
+  #drawer {
+    position: fixed; inset: 0; z-index: 99;
+    background: var(--stone-50);
+    transform: translateX(100%);
+    transition: transform var(--t);
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: var(--pad);
+    gap: 1.4rem;
+  }
+  #drawer.open { transform: translateX(0); }
+  #drawer a { font-family: "DM Serif Display", serif; font-size: 1.8rem; color: var(--ink); }
+  #drawer .btn { font-family: "DM Sans", sans-serif; font-size: 1.05rem; margin-top: 1rem; }
+  #drawer .close { position: absolute; top: 22px; right: var(--pad); font-size: 2rem; background: none; border: none; cursor: pointer; color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    isolation: isolate;
+  }
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0; z-index: -2;
+    background-image: url("https://images.unsplash.com/photo-1544965838-54ef8406f868?w=1800&q=80");
+    background-size: cover;
+    background-position: center;
+  }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(105deg, rgba(20,16,13,0.86) 0%, rgba(20,16,13,0.62) 45%, rgba(39,67,83,0.42) 100%);
+  }
+  .hero-inner { max-width: 760px; padding-top: 74px; }
+  .hero h1 {
+    font-size: clamp(2.6rem, 6.5vw, 5rem);
+    margin: 1rem 0 1.2rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--stone-200); }
+  .hero p.sub {
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    color: rgba(255,255,255,0.9);
+    max-width: 52ch;
+    margin-bottom: 2rem;
+  }
+  .hero .cta-row { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .hero .eyebrow { color: #fff; }
+  .hero .eyebrow::before { background: #fff; }
+
+  /* ---------- Section scaffolding ---------- */
+  section { padding-block: clamp(4rem, 9vw, 7.5rem); }
+  .section-head { max-width: 640px; margin-bottom: clamp(2.5rem, 5vw, 3.5rem); }
+  .section-head h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); margin: 0.8rem 0 1rem; }
+  .section-head p { color: var(--ink-soft); font-size: 1.1rem; }
+
+  /* ---------- Services (asymmetric bento) ---------- */
+  .services { background: var(--stone-50); }
+  .svc-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    grid-auto-rows: minmax(0, auto);
+    gap: 1.25rem;
+  }
+  .svc-card {
+    background: var(--paper);
+    border: 1px solid var(--stone-200);
+    border-radius: var(--radius);
+    padding: clamp(1.6rem, 3vw, 2.4rem);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--t), box-shadow var(--t);
+    display: flex; flex-direction: column;
+  }
+  .svc-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .svc-card h3 { font-size: 1.55rem; margin-bottom: 0.6rem; }
+  .svc-card p { color: var(--ink-soft); }
+  .svc-icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    background: var(--steel-tint); color: var(--steel);
+    display: grid; place-items: center; margin-bottom: 1.1rem;
+  }
+  .svc-icon svg { width: 26px; height: 26px; }
+
+  /* Feature card spans two rows with image */
+  .svc-feature {
+    grid-row: span 2;
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+    position: relative;
+    overflow: hidden;
+    justify-content: flex-end;
+    min-height: 420px;
+  }
+  .svc-feature .fimg {
+    position: absolute; inset: 0; z-index: 0;
+    background: url("https://images.unsplash.com/photo-1674660346036-4b3df3f07cca?w=900&q=80") center/cover;
+    opacity: 0.5;
+  }
+  .svc-feature::after {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to top, rgba(20,16,13,0.94) 20%, rgba(20,16,13,0.2) 100%);
+  }
+  .svc-feature > * { position: relative; z-index: 2; }
+  .svc-feature p { color: rgba(255,255,255,0.86); }
+  .price-tag {
+    display: inline-flex; align-items: baseline; gap: 0.4rem;
+    margin-bottom: 0.6rem;
+  }
+  .price-tag .num { font-family: "DM Serif Display", serif; font-size: 3.2rem; color: #fff; }
+  .price-tag .per { color: var(--stone-200); font-weight: 600; }
+  .svc-feature .btn { margin-top: 1.4rem; align-self: flex-start; }
+
+  /* ---------- Process ---------- */
+  .process { background: var(--stone-100); }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; counter-reset: step; }
+  .step { position: relative; padding-top: 1rem; }
+  .step .n {
+    font-family: "DM Serif Display", serif;
+    font-size: 2.6rem; color: var(--steel);
+    line-height: 1; margin-bottom: 0.7rem;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .step .n::after { content: ""; flex: 1; height: 1px; background: var(--stone-300); }
+  .step:last-child .n::after { display: none; }
+  .step h3 { font-size: 1.25rem; margin-bottom: 0.4rem; }
+  .step p { color: var(--ink-soft); font-size: 0.98rem; }
+
+  /* ---------- Trust strip ---------- */
+  .trust { background: var(--ink); color: #fff; padding-block: clamp(3rem, 6vw, 4.5rem); }
+  .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
+  .trust .stat .big { font-family: "DM Serif Display", serif; font-size: clamp(2rem, 4vw, 2.9rem); color: #fff; }
+  .trust .stat .lbl { color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-top: 0.3rem; }
+  .trust .stat .big em { color: var(--stone-300); font-style: normal; }
+
+  /* ---------- Reviews ---------- */
+  .reviews { background: var(--stone-50); }
+  .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .review {
+    background: var(--paper);
+    border: 1px solid var(--stone-200);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    display: flex; flex-direction: column;
+  }
+  .stars { color: var(--amber); letter-spacing: 2px; margin-bottom: 1rem; font-size: 1.05rem; }
+  .review blockquote { font-size: 1.05rem; color: var(--ink-soft); margin-bottom: 1.5rem; flex: 1; }
+  .review .who { display: flex; align-items: center; gap: 0.8rem; }
+  .avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--steel); color: #fff;
+    display: grid; place-items: center;
+    font-weight: 700; font-size: 0.95rem;
+  }
+  .review .who .name { font-weight: 600; }
+  .review .who .loc { font-size: 0.88rem; color: var(--ink-mute); }
+
+  /* ---------- Tips (asymmetric: image + list) ---------- */
+  .tips { background: var(--steel-dark); color: #fff; }
+  .tips-inner { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .tips-photo { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); aspect-ratio: 4/5; }
+  .tips-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .tips .eyebrow { color: var(--stone-300); }
+  .tips .eyebrow::before { background: var(--stone-300); }
+  .tips h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); margin: 0.8rem 0 2rem; }
+  .tip-item { display: flex; gap: 1.1rem; padding: 1.2rem 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .tip-item:last-child { border-bottom: none; }
+  .tip-item .tn { font-family: "DM Serif Display", serif; font-size: 1.5rem; color: var(--stone-300); flex-shrink: 0; }
+  .tip-item h3 { font-size: 1.2rem; margin-bottom: 0.25rem; }
+  .tip-item p { color: rgba(255,255,255,0.78); font-size: 0.98rem; }
+
+  /* ---------- Contact ---------- */
+  .contact { background: var(--stone-100); }
+  .contact-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); }
+  .contact-detail { display: flex; gap: 1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--stone-200); align-items: flex-start; }
+  .contact-detail:last-child { border-bottom: none; }
+  .contact-detail .ci {
+    width: 44px; height: 44px; border-radius: 11px; flex-shrink: 0;
+    background: var(--steel-tint); color: var(--steel);
+    display: grid; place-items: center;
+  }
+  .contact-detail .ci svg { width: 22px; height: 22px; }
+  .contact-detail .lbl { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-mute); }
+  .contact-detail .val { font-size: 1.1rem; font-weight: 600; }
+  .contact-detail a.val:hover { color: var(--steel); }
+
+  form.card {
+    background: var(--paper);
+    border: 1px solid var(--stone-200);
+    border-radius: var(--radius);
+    padding: clamp(1.6rem, 3vw, 2.4rem);
+    box-shadow: var(--shadow-sm);
+  }
+  .field { margin-bottom: 1.2rem; }
+  .field label { display: block; font-weight: 600; font-size: 0.92rem; margin-bottom: 0.45rem; }
+  .field input, .field textarea, .field select {
+    width: 100%;
+    font-family: inherit; font-size: 1rem;
+    padding: 0.8rem 1rem;
+    border: 1.5px solid var(--stone-200);
+    border-radius: var(--radius-sm);
+    background: var(--stone-50);
+    color: var(--ink);
+    transition: border-color var(--t-fast), box-shadow var(--t-fast);
+  }
+  .field input::placeholder, .field textarea::placeholder { color: var(--ink-mute); }
+  .field input:focus, .field textarea:focus, .field select:focus {
+    outline: none;
+    border-color: var(--steel);
+    box-shadow: 0 0 0 3px rgba(55,89,110,0.15);
+  }
+  .field textarea { resize: vertical; min-height: 120px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  form .btn { width: 100%; margin-top: 0.5rem; }
+  .form-note { font-size: 0.85rem; color: var(--ink-mute); margin-top: 0.8rem; text-align: center; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.72);
+    padding-block: clamp(3rem, 6vw, 4.5rem) 2rem;
+  }
+  .foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+  footer .brand { color: #fff; margin-bottom: 1rem; }
+  footer .brand .mark { background: var(--steel); }
+  footer .tagline { max-width: 34ch; font-size: 0.98rem; }
+  footer h4 { color: #fff; font-family: "DM Sans", sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1.1rem; }
+  footer ul { list-style: none; }
+  footer ul li { margin-bottom: 0.7rem; }
+  footer ul a { transition: color var(--t-fast); }
+  footer ul a:hover { color: #fff; }
+  .foot-legal {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 1.6rem;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    font-size: 0.85rem;
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.d1 { transition-delay: 0.08s; }
+  .reveal.d2 { transition-delay: 0.16s; }
+  .reveal.d3 { transition-delay: 0.24s; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1024px) {
+    .svc-grid { grid-template-columns: 1fr 1fr; }
+    .svc-feature { grid-row: span 2; }
+    .steps { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .step:nth-child(2) .n::after { display: none; }
+    .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+    .review-grid { grid-template-columns: 1fr; }
+    .tips-inner, .contact-grid { grid-template-columns: 1fr; }
+    .tips-photo { max-width: 460px; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links, .nav-cta .btn { display: none; }
+    .hamburger { display: block; }
+    .svc-grid { grid-template-columns: 1fr; }
+    .svc-feature { grid-row: auto; min-height: 340px; }
+    .steps { grid-template-columns: 1fr; }
+    .step .n::after { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .foot-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .foot-legal { flex-direction: column; }
+  }
+
+  /* ---------- Reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    * { scroll-behavior: auto !important; }
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .svc-card:hover, .btn:active { transform: none; }
+    #drawer, header#nav { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="mark">M</span> Mike's Sharp Shop</a>
+    <nav class="nav-links">
+      <a class="link" href="#services">Services</a>
+      <a class="link" href="#process">How It Works</a>
+      <a class="link" href="#reviews">Reviews</a>
+      <a class="link" href="#tips">Care Tips</a>
+      <a class="link" href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary">Book Online</a>
+      <button class="hamburger" aria-label="Open menu" id="openMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div id="drawer" aria-hidden="true">
+  <button class="close" aria-label="Close menu" id="closeMenu">&times;</button>
+  <a href="#services">Services</a>
+  <a href="#process">How It Works</a>
+  <a href="#reviews">Reviews</a>
+  <a href="#tips">Care Tips</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn-primary">Book Online</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="wrap hero-inner">
+    <span class="eyebrow reveal">Cutting Edge Performance</span>
+    <h1 class="reveal d1">A Razor Edge,<br /><em>Brought Back to Life.</em></h1>
+    <p class="sub reveal d2">Dull knives, tired scissors, worn garden tools. Drop them off and pick them up sharper than the day you bought them. Flat priced, done right, done local.</p>
+    <div class="cta-row reveal d3">
+      <a href="#contact" class="btn btn-primary">Book a Sharpening</a>
+      <a href="#services" class="btn btn-light">See What We Sharpen</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">What We Do</span>
+      <h2>One flat price. Every edge, expertly restored.</h2>
+      <p>Whether it is a chef's knife you use every night or the shears in the garage, we bring back a clean, lasting edge using the right stone and angle for each blade.</p>
+    </div>
+
+    <div class="svc-grid">
+      <!-- Feature card with image, spans two rows -->
+      <article class="svc-card svc-feature reveal">
+        <div class="fimg"></div>
+        <span class="eyebrow" style="color:#fff">Most Popular</span>
+        <div class="price-tag"><span class="num">$8</span><span class="per">per item</span></div>
+        <h3>Expert Knife Sharpening</h3>
+        <p>Chef knives, paring knives, pocket knives, and cleavers. Hand finished on stones for a keen, durable edge that lasts.</p>
+        <a href="#contact" class="btn btn-light">Book This</a>
+      </article>
+
+      <article class="svc-card reveal d1">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l7 7-9 9-7 0 0-7 9-9z"/><path d="M11 6l7 7"/></svg>
+        </div>
+        <h3>Scissors &amp; Shears</h3>
+        <p>Kitchen shears, sewing scissors, and garden pruners realigned and honed to cut clean again.</p>
+      </article>
+
+      <article class="svc-card reveal d2">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l6-6"/><path d="M14 4l6 6-4 4-6-6z"/><path d="M9 9l2 2"/></svg>
+        </div>
+        <h3>Tool &amp; Blade Repair</h3>
+        <p>Chipped tips, bent edges, and loose handles. We assess the damage and get your tools back in service.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">How It Works</span>
+      <h2>Sharp in three simple steps.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="n">01</div>
+        <h3>Drop Off</h3>
+        <p>Bring your knives and tools by, clean and dry. No appointment needed for most items.</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="n">02</div>
+        <h3>We Sharpen</h3>
+        <p>Each blade is matched to the right stone and angle, then finished by hand.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="n">03</div>
+        <h3>Quality Check</h3>
+        <p>Every edge is tested for a clean, even bite before it leaves the shop.</p>
+      </div>
+      <div class="step reveal d3">
+        <div class="n">04</div>
+        <h3>Pick Up</h3>
+        <p>Most orders are ready the same week. We will let you know the moment they are done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRUST STRIP ================= -->
+<section class="trust">
+  <div class="wrap trust-grid">
+    <div class="stat reveal"><div class="big">$8</div><div class="lbl">Flat price per item</div></div>
+    <div class="stat reveal d1"><div class="big">Same <em>Week</em></div><div class="lbl">Typical turnaround</div></div>
+    <div class="stat reveal d2"><div class="big">Family</div><div class="lbl">Owned &amp; operated locally</div></div>
+    <div class="stat reveal d3"><div class="big">Every <em>Edge</em></div><div class="lbl">Checked before pickup</div></div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<!-- TODO: replace these representative reviews with real customer testimonials once collected -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Word Around Town</span>
+      <h2>Cooks and craftspeople keep coming back.</h2>
+    </div>
+    <div class="review-grid">
+      <article class="review reveal">
+        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"My chef's knife came back scary sharp. Slices tomatoes like they are not even there. Worth every bit of the eight dollars."</blockquote>
+        <div class="who"><span class="avatar">DR</span><div><div class="name">Danielle Rourke</div><div class="loc">Home Cook, Louisville</div></div></div>
+      </article>
+      <article class="review reveal d1">
+        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"I run a small catering kitchen. Mike keeps all our knives running and the turnaround is quick. Honest, local, and reliable."</blockquote>
+        <div class="who"><span class="avatar">MC</span><div><div class="name">Marcus Cole</div><div class="loc">Caterer, St. Matthews</div></div></div>
+      </article>
+      <article class="review reveal d2">
+        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Brought in a pair of garden shears I was ready to toss. They cut like new now. Friendly service and fair pricing."</blockquote>
+        <div class="who"><span class="avatar">PB</span><div><div class="name">Priya Banerjee</div><div class="loc">Gardener, Highlands</div></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIPS ================= -->
+<section class="tips" id="tips">
+  <div class="wrap tips-inner">
+    <div class="tips-photo reveal">
+      <img src="https://images.unsplash.com/photo-1604543248368-da42b20dce5b?w=900&q=80" alt="Chef's knives resting on a wooden board" loading="lazy" />
+    </div>
+    <div class="reveal d1">
+      <span class="eyebrow">Pro Blade Care</span>
+      <h2>Keep your edge between visits.</h2>
+      <div class="tip-item">
+        <span class="tn">01</span>
+        <div><h3>Clean and dry before drop-off</h3><p>Wipe tools down so we can inspect the true edge and give you the best result.</p></div>
+      </div>
+      <div class="tip-item">
+        <span class="tn">02</span>
+        <div><h3>Use wood cutting boards</h3><p>Wood and soft plastic protect your edge. Glass and stone boards dull a blade fast.</p></div>
+      </div>
+      <div class="tip-item">
+        <span class="tn">03</span>
+        <div><h3>Store in blocks or magnetic racks</h3><p>Loose in a drawer, blades knock together and chip. Give each one a home.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Get In Touch</span>
+      <h2>Ready for a sharper edge?</h2>
+      <p>Send us a note about what you need sharpened and we will get right back to you with timing and details.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="contact-detail">
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg></span>
+          <div><div class="lbl">Phone</div><a class="val" href="tel:5022961815">502-296-1815</a></div>
+        </div>
+        <div class="contact-detail">
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+          <div><div class="lbl">Email</div><a class="val" href="mailto:info@sharpshop.com">info@sharpshop.com</a></div>
+        </div>
+        <div class="contact-detail">
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div><div class="lbl">Hours</div><div class="val">Tue &ndash; Sat, 9am to 5pm</div></div>
+        </div>
+        <div class="contact-detail">
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><div class="lbl">Location</div><div class="val">Louisville, KY <!-- TODO: add full street address --></div></div>
+        </div>
+      </div>
+
+      <form class="card reveal d1" onsubmit="return handleSubmit(event)">
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" placeholder="Best number to reach you" autocomplete="tel" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="service">What needs sharpening?</label>
+          <select id="service" name="service" autocomplete="off">
+            <option>Kitchen knives</option>
+            <option>Scissors &amp; shears</option>
+            <option>Garden &amp; outdoor tools</option>
+            <option>Repair or restoration</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Details</label>
+          <textarea id="message" name="message" placeholder="How many items, and anything we should know" autocomplete="off"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Request</button>
+        <p class="form-note">We usually reply the same business day.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="brand"><span class="mark">M</span> Mike's Sharp Shop</a>
+        <p class="tagline">Trusted craft care and local expert advice. Bringing a razor edge back to the tools you rely on every day.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Knife Sharpening</a></li>
+          <li><a href="#services">Scissors &amp; Shears</a></li>
+          <li><a href="#services">Tool Repair</a></li>
+          <li><a href="#process">How It Works</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#tips">Care Tips</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">Book Online</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>&copy; 2026 Mike's Sharp Shop. All rights reserved.</span>
+      <span>Louisville, KY &middot; 502-296-1815</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav frosting on scroll (IntersectionObserver on a sentinel, no scroll listener)
+  (function () {
+    var nav = document.getElementById('nav');
+    var sentinel = document.createElement('div');
+    sentinel.style.cssText = 'position:absolute;top:0;height:80px;width:1px;pointer-events:none;';
+    document.body.prepend(sentinel);
+    var navObs = new IntersectionObserver(function (entries) {
+      nav.classList.toggle('scrolled', !entries[0].isIntersecting);
+    }, { threshold: 0 });
+    navObs.observe(sentinel);
+  })();
+
+  // Scroll reveal
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+
+  // Mobile drawer
+  (function () {
+    var drawer = document.getElementById('drawer');
+    var open = document.getElementById('openMenu');
+    var close = document.getElementById('closeMenu');
+    function setOpen(state) {
+      drawer.classList.toggle('open', state);
+      drawer.setAttribute('aria-hidden', String(!state));
+      document.body.style.overflow = state ? 'hidden' : '';
+    }
+    open.addEventListener('click', function () { setOpen(true); });
+    close.addEventListener('click', function () { setOpen(false); });
+    drawer.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setOpen(false); });
+    });
+  })();
+
+  // Demo form handler (no backend wired yet)
+  function handleSubmit(e) {
+    e.preventDefault();
+    var btn = e.target.querySelector('button[type=submit]');
+    btn.textContent = 'Thanks, we will be in touch';
+    btn.style.background = 'var(--steel-dark)';
+    setTimeout(function () { e.target.reset(); btn.textContent = 'Send Request'; btn.style.background = ''; }, 3200);
+    return false;
+  }
+</script>
+</body>
+</html>
