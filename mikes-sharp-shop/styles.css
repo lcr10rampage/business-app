@@ -193,14 +193,15 @@ header#nav.scrolled {
 .hamburger span + span { margin-top: 6px; }
 
 #drawer {
-  position: fixed; inset: 0; z-index: 99;
+  position: fixed; inset: 0; z-index: 200; /* above the header so it covers the top bar */
   background: var(--graphite);
   transform: translateX(100%);
-  transition: transform var(--t);
+  visibility: hidden;
+  transition: transform var(--t), visibility 0s linear 0.5s; /* stay visible through the close slide */
   display: flex; flex-direction: column; justify-content: center;
   padding: var(--pad); gap: 1.3rem;
 }
-#drawer.open { transform: translateX(0); }
+#drawer.open { transform: translateX(0); visibility: visible; transition: transform var(--t), visibility 0s; }
 #drawer a { font-family: "Oswald", sans-serif; text-transform: uppercase; font-size: 1.9rem; color: #fff; letter-spacing: 0.02em; }
 #drawer a:hover { color: var(--ember); }
 #drawer .btn { font-size: 1.05rem; margin-top: 1rem; align-self: flex-start; }
