@@ -379,6 +379,31 @@ section { padding-block: clamp(4rem, 9vw, 7.5rem); position: relative; }
 .post-author .name { font-size: 0.9rem; font-weight: 600; }
 .post-read { font-family: "Oswald", sans-serif; text-transform: uppercase; font-size: 0.82rem; letter-spacing: 0.05em; color: var(--ember-deep); display: inline-flex; gap: 0.35rem; align-items: center; }
 
+/* Outlined "coming soon" placeholder, sized to match a post card */
+.post-card.soon {
+  background: transparent;
+  border: 2px dashed rgba(26,27,29,0.28);
+  box-shadow: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  min-height: 340px;
+}
+.post-card.soon:hover { transform: none; box-shadow: none; border-color: var(--ember); }
+.post-card.soon .soon-plus {
+  width: 58px; height: 58px; border-radius: var(--r);
+  border: 2px dashed rgba(26,27,29,0.3);
+  color: var(--ember-deep);
+  display: grid; place-items: center;
+  font-family: "Oswald", sans-serif; font-weight: 700; font-size: 2rem; line-height: 1;
+  margin-bottom: 1.1rem;
+  transition: border-color var(--t-fast), color var(--t-fast);
+}
+.post-card.soon:hover .soon-plus { border-color: var(--ember); color: var(--ember); }
+.post-card.soon h3 { font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 600; }
+.post-card.soon p { color: var(--ink-mute); text-transform: none; max-width: 26ch; }
+
 /* ---------- Booking ---------- */
 .book { background: var(--concrete); }
 .book-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; margin-bottom: clamp(3rem, 6vw, 4.5rem); }
