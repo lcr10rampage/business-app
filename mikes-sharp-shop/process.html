@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sign In | Mike's Sharp Shop</title>
-<meta name="description" content="Sign in to your Mike's Sharp Shop account to manage bookings and see order notifications." />
+<title>How It Works | Mike's Sharp Shop</title>
+<meta name="description" content="How sharpening works at Mike's Sharp Shop: drop off, we sharpen by hand, quality check, and pick up. Most orders ready the same week in Louisville, KY." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -44,20 +44,35 @@
   <a href="book.html" class="btn btn-primary">Book Online</a>
 </div>
 
-<!-- ================= AUTH ================= -->
-<section class="auth" style="padding-top:calc(72px + clamp(3rem,7vw,6rem));">
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero" id="top">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1674660346036-4b3df3f07cca?w=1800&q=80')"></div>
+  <div class="wrap page-hero-inner">
+    <span class="eyebrow reveal">How It Works</span>
+    <h1 class="reveal d1">Sharp in three simple steps.</h1>
+    <p class="reveal d2">No appointment needed for most items. Here is exactly what happens from the moment you walk in the door.</p>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="process">
   <div class="wrap">
-    <div class="auth-card reveal">
-      <span class="eyebrow">Account Access</span>
-      <h1 style="margin-top:0.6rem;">Sign In</h1>
-      <p>Sign in to manage your bookings and see order notifications when your blades are ready for pickup.</p>
-      <form onsubmit="return handleSubmit(event)">
-        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required /></div>
-        <div class="field"><label for="password">Password</label><input id="password" name="password" type="password" placeholder="Your password" autocomplete="current-password" required /></div>
-        <button type="submit" class="btn btn-primary">Sign In</button>
-      </form>
-      <p class="auth-alt">New here? <a href="book.html">Book online</a> to create your account.</p>
-      <p class="auth-note">Accounts and notifications are part of the online booking system. Not set up yet, so this form is a placeholder.</p>
+    <div class="steps">
+      <div class="step reveal"><div class="n">STEP 01</div><h3>Drop Off</h3><p>Bring your knives and tools by, clean and dry. No appointment needed for most items.</p></div>
+      <div class="step reveal d1"><div class="n">STEP 02</div><h3>We Sharpen</h3><p>Each blade is matched to the right stone and angle, then finished by hand.</p></div>
+      <div class="step reveal d2"><div class="n">STEP 03</div><h3>Quality Check</h3><p>Every edge is tested for a clean, even bite before it leaves the shop.</p></div>
+      <div class="step reveal d3"><div class="n">STEP 04</div><h3>Pick Up</h3><p>Most orders are ready the same week. We let you know the moment they are done.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BAND ================= -->
+<section class="cta-band cut-both">
+  <div class="wrap">
+    <div><h2>Sound simple? It is.</h2><p>Book your sharpening and drop by whenever suits you.</p></div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="book.html" class="btn btn-primary">Book Online</a>
+      <a href="services.html" class="btn btn-outline-light">See Services</a>
     </div>
   </div>
 </section>

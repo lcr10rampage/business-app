@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact | Mike's Sharp Shop</title>
+<meta name="description" content="Get in touch with Mike's Sharp Shop. Call 502-296-1815, email info@sharpshop.com, or send a note about what you need sharpened. Louisville, KY." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<script>if(!('startViewTransition' in document)){document.documentElement.className+=' no-vt';}</script>
+</head>
+<body>
+
+<header id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="mark"><span>M</span></span> Mike's Sharp Shop</a>
+    <nav class="nav-links">
+      <a class="link" href="index.html">Home</a>
+      <a class="link" href="services.html">Services</a>
+      <a class="link" href="blog.html">Blog</a>
+      <a class="link" href="contact.html" aria-current="page">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="signin.html" class="signin">Sign In</a>
+      <a href="book.html" class="btn btn-primary">Book Online</a>
+      <button class="hamburger" aria-label="Open menu" id="openMenu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div id="drawer" aria-hidden="true">
+  <button class="close" aria-label="Close menu" id="closeMenu">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="process.html">How It Works</a>
+  <a href="book.html">Book Online</a>
+  <a href="reviews.html">Reviews</a>
+  <a href="tips.html">Care Tips</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+  <a href="signin.html">Sign In</a>
+  <a href="book.html" class="btn btn-primary">Book Online</a>
+</div>
+
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero" id="top">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1615063053421-e8cd1d71d5f2?w=1800&q=80')"></div>
+  <div class="wrap page-hero-inner">
+    <span class="eyebrow reveal">Get In Touch</span>
+    <h1 class="reveal d1">Ready for a sharper edge?</h1>
+    <p class="reveal d2">Send a note about what you need sharpened and we will get right back to you with timing and details.</p>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="contact-detail"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg></span><div><div class="lbl">Phone</div><a class="val" href="tel:5022961815">502-296-1815</a></div></div>
+        <div class="contact-detail"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span><div><div class="lbl">Email</div><a class="val" href="mailto:info@sharpshop.com">info@sharpshop.com</a></div></div>
+        <div class="contact-detail"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><div class="lbl">Hours</div><div class="val">Tue &ndash; Sat, 9am to 5pm</div></div></div>
+        <div class="contact-detail"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><div class="lbl">Location</div><div class="val">Louisville, KY <!-- TODO: add full street address --></div></div></div>
+      </div>
+
+      <form class="card reveal d1" onsubmit="return handleSubmit(event)">
+        <div class="form-row">
+          <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required /></div>
+          <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="Best number to reach you" autocomplete="tel" /></div>
+        </div>
+        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required /></div>
+        <div class="field"><label for="service">What needs sharpening?</label>
+          <select id="service" name="service" autocomplete="off">
+            <option>Kitchen knives</option>
+            <option>Scissors &amp; shears</option>
+            <option>Garden &amp; outdoor tools</option>
+            <option>Drill bits</option>
+            <option>Repair or restoration</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field"><label for="message">Details</label><textarea id="message" name="message" placeholder="How many items, and anything we should know" autocomplete="off"></textarea></div>
+        <button type="submit" class="btn btn-primary">Send Request</button>
+        <p class="form-note">We usually reply the same business day.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html" class="brand"><span class="mark"><span>M</span></span> Mike's Sharp Shop</a>
+        <p class="tagline">Precision craft care and local expert advice. Bringing a razor edge back to the tools you rely on every day.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul><li><a href="services.html">Services</a></li><li><a href="process.html">How It Works</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="tips.html">Care Tips</a></li><li><a href="book.html">Book Online</a></li><li><a href="blog.html">Blog</a></li></ul>
+      </div>
+      <div>
+        <h4>Account</h4>
+        <ul><li><a href="signin.html">Sign In</a></li><li><a href="contact.html">Contact</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>&copy; 2026 Mike's Sharp Shop. All rights reserved.</span>
+      <span>Louisville, KY &middot; 502-296-1815</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

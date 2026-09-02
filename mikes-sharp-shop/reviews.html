@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sign In | Mike's Sharp Shop</title>
-<meta name="description" content="Sign in to your Mike's Sharp Shop account to manage bookings and see order notifications." />
+<title>Reviews | Mike's Sharp Shop</title>
+<meta name="description" content="See what home cooks and craftspeople in Louisville say about Mike's Sharp Shop. Sharp results, quick turnaround, honest local service." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -44,20 +44,47 @@
   <a href="book.html" class="btn btn-primary">Book Online</a>
 </div>
 
-<!-- ================= AUTH ================= -->
-<section class="auth" style="padding-top:calc(72px + clamp(3rem,7vw,6rem));">
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero" id="top">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1577398628388-516477602b3b?w=1800&q=80')"></div>
+  <div class="wrap page-hero-inner">
+    <span class="eyebrow reveal">Word Around Town</span>
+    <h1 class="reveal d1">Cooks and craftspeople keep coming back.</h1>
+    <p class="reveal d2">Real edges, real results. Here is what a few of our neighbors have to say.</p>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<!-- TODO: replace these representative reviews with real customer testimonials once collected -->
+<section class="reviews">
   <div class="wrap">
-    <div class="auth-card reveal">
-      <span class="eyebrow">Account Access</span>
-      <h1 style="margin-top:0.6rem;">Sign In</h1>
-      <p>Sign in to manage your bookings and see order notifications when your blades are ready for pickup.</p>
-      <form onsubmit="return handleSubmit(event)">
-        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required /></div>
-        <div class="field"><label for="password">Password</label><input id="password" name="password" type="password" placeholder="Your password" autocomplete="current-password" required /></div>
-        <button type="submit" class="btn btn-primary">Sign In</button>
-      </form>
-      <p class="auth-alt">New here? <a href="book.html">Book online</a> to create your account.</p>
-      <p class="auth-note">Accounts and notifications are part of the online booking system. Not set up yet, so this form is a placeholder.</p>
+    <div class="review-grid">
+      <article class="review reveal">
+        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"My chef's knife came back scary sharp. Slices tomatoes like they are not even there. Worth every bit of the eight dollars."</blockquote>
+        <div class="who"><span class="avatar">DR</span><div><div class="name">Danielle Rourke</div><div class="loc">Home Cook, Louisville</div></div></div>
+      </article>
+      <article class="review reveal d1">
+        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"I run a small catering kitchen. Mike keeps all our knives running and the turnaround is quick. Honest, local, and reliable."</blockquote>
+        <div class="who"><span class="avatar">MC</span><div><div class="name">Marcus Cole</div><div class="loc">Caterer, St. Matthews</div></div></div>
+      </article>
+      <article class="review reveal d2">
+        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"Brought in a pair of garden shears I was ready to toss. They cut like new now. Friendly service and fair pricing."</blockquote>
+        <div class="who"><span class="avatar">PB</span><div><div class="name">Priya Banerjee</div><div class="loc">Gardener, Highlands</div></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BAND ================= -->
+<section class="cta-band cut-both">
+  <div class="wrap">
+    <div><h2>Join the list of happy edges.</h2><p>Book your first sharpening and see the difference.</p></div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="book.html" class="btn btn-primary">Book Online</a>
+      <a href="contact.html" class="btn btn-outline-light">Contact Us</a>
     </div>
   </div>
 </section>

@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
+<script>if(!('startViewTransition' in document)){document.documentElement.className+=' no-vt';}</script>
 </head>
 <body>
 
@@ -17,9 +18,9 @@
     <a href="index.html" class="brand"><span class="mark"><span>M</span></span> Mike's Sharp Shop</a>
     <nav class="nav-links">
       <a class="link" href="index.html" aria-current="page">Home</a>
-      <a class="link" href="index.html#services">Services</a>
+      <a class="link" href="services.html">Services</a>
       <a class="link" href="blog.html">Blog</a>
-      <a class="link" href="index.html#contact">Contact</a>
+      <a class="link" href="contact.html">Contact</a>
     </nav>
     <div class="nav-cta">
       <a href="signin.html" class="signin">Sign In</a>
@@ -32,11 +33,13 @@
 <div id="drawer" aria-hidden="true">
   <button class="close" aria-label="Close menu" id="closeMenu">&times;</button>
   <a href="index.html">Home</a>
-  <a href="index.html#services">Services</a>
+  <a href="services.html">Services</a>
+  <a href="process.html">How It Works</a>
   <a href="book.html">Book Online</a>
+  <a href="reviews.html">Reviews</a>
+  <a href="tips.html">Care Tips</a>
   <a href="blog.html">Blog</a>
-  <a href="index.html#tips">Care Tips</a>
-  <a href="index.html#contact">Contact</a>
+  <a href="contact.html">Contact</a>
   <a href="signin.html">Sign In</a>
   <a href="book.html" class="btn btn-primary">Book Online</a>
 </div>
@@ -49,149 +52,58 @@
     <p class="sub reveal d2">Knives, scissors, garden tools. Drop them off dull and pick them up sharper than the day you bought them. Flat priced, done by hand, done local.</p>
     <div class="cta-row reveal d3">
       <a href="book.html" class="btn btn-primary">Book a Sharpening</a>
-      <a href="#services" class="btn btn-outline-light">See What We Sharpen</a>
+      <a href="services.html" class="btn btn-outline-light">See What We Sharpen</a>
     </div>
   </div>
 </section>
 
-<!-- ================= SERVICES ================= -->
-<section class="services" id="services">
+<!-- ================= EXPLORE (teasers) ================= -->
+<section class="services" id="explore">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">What We Do</span>
-      <h2>One flat price. Every edge, restored.</h2>
-      <p>Whether it is the chef's knife you use every night or the shears out in the garage, we match the right stone and angle to each blade for a clean, lasting edge.</p>
+      <span class="eyebrow">Where To Next</span>
+      <h2>Everything the shop offers.</h2>
+      <p>One flat price, expert hands, and honest turnaround. Pick where you want to go.</p>
     </div>
 
-    <div class="svc-grid">
-      <article class="svc-card svc-feature reveal">
+    <div class="svc-grid teaser-grid">
+      <a class="svc-card svc-feature teaser reveal" href="services.html">
         <div class="fimg"></div>
-        <span class="eyebrow" style="color:#fff">Most Requested</span>
+        <span class="eyebrow" style="color:#fff">Our Services</span>
         <div class="price-tag"><span class="num">$8</span><span class="per">/ per item</span></div>
-        <h3>Expert Knife Sharpening</h3>
-        <p>Chef knives, paring knives, pocket knives, and cleavers. Hand finished on stones for a keen, durable edge that holds.</p>
-        <a href="book.html" class="btn btn-primary">Book This</a>
-      </article>
+        <h3>Knives, Scissors &amp; Tools</h3>
+        <p>See every edge we restore, from chef knives to mower blades, with clear flat pricing.</p>
+        <span class="btn btn-primary" style="margin-top:1.4rem;align-self:flex-start;">Explore Services</span>
+      </a>
 
-      <article class="svc-card reveal d1">
-        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3l7 7-9 9-7 0 0-7 9-9z"/><path d="M11 6l7 7"/></svg></div>
-        <h3>Scissors &amp; Shears</h3>
-        <p>Kitchen shears, sewing scissors, and garden pruners realigned and honed to cut clean again.</p>
-      </article>
+      <a class="svc-card teaser reveal d1" href="process.html">
+        <div class="t-body"><h3>How It Works</h3><p>Drop off, we sharpen, quality check, pick up. Sharp in a few simple steps.</p></div>
+        <span class="arrow">&rsaquo;</span>
+      </a>
 
-      <article class="svc-card reveal d2">
-        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l6-6"/><path d="M14 4l6 6-4 4-6-6z"/><path d="M9 9l2 2"/></svg></div>
-        <h3>Tool &amp; Blade Repair</h3>
-        <p>Chipped tips, bent edges, drill bits, and mower blades. We assess the damage and get your tools back in service.</p>
-      </article>
+      <a class="svc-card teaser reveal d2" href="reviews.html">
+        <div class="t-body"><h3>Reviews</h3><p>What cooks and craftspeople around town say about their edge.</p></div>
+        <span class="arrow">&rsaquo;</span>
+      </a>
+
+      <a class="svc-card teaser reveal d3" href="tips.html">
+        <div class="t-body"><h3>Care Tips</h3><p>Pro blade care to help you keep that edge between visits.</p></div>
+        <span class="arrow">&rsaquo;</span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ================= PROCESS ================= -->
-<section class="process" id="process">
+<!-- ================= CTA BAND ================= -->
+<section class="cta-band cut-both">
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">How It Works</span>
-      <h2>Sharp in three simple steps.</h2>
-    </div>
-    <div class="steps">
-      <div class="step reveal"><div class="n">STEP 01</div><h3>Drop Off</h3><p>Bring your knives and tools by, clean and dry. No appointment needed for most items.</p></div>
-      <div class="step reveal d1"><div class="n">STEP 02</div><h3>We Sharpen</h3><p>Each blade is matched to the right stone and angle, then finished by hand.</p></div>
-      <div class="step reveal d2"><div class="n">STEP 03</div><h3>Quality Check</h3><p>Every edge is tested for a clean, even bite before it leaves the shop.</p></div>
-      <div class="step reveal d3"><div class="n">STEP 04</div><h3>Pick Up</h3><p>Most orders are ready the same week. We let you know the moment they are done.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= TRUST STRIP ================= -->
-<section class="trust cut-both">
-  <div class="wrap trust-grid">
-    <div class="stat reveal"><div class="big">$8 <em>Flat</em></div><div class="lbl">PER ITEM</div></div>
-    <div class="stat reveal d1"><div class="big">Same <em>Week</em></div><div class="lbl">TYPICAL TURNAROUND</div></div>
-    <div class="stat reveal d2"><div class="big">Family <em>Run</em></div><div class="lbl">LOCAL &amp; INDEPENDENT</div></div>
-    <div class="stat reveal d3"><div class="big">Every <em>Edge</em></div><div class="lbl">CHECKED BEFORE PICKUP</div></div>
-  </div>
-</section>
-
-<!-- ================= REVIEWS ================= -->
-<!-- TODO: replace these representative reviews with real customer testimonials once collected -->
-<section class="reviews" id="reviews">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Word Around Town</span>
-      <h2>Cooks and craftspeople keep coming back.</h2>
-    </div>
-    <div class="review-grid">
-      <article class="review reveal">
-        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>"My chef's knife came back scary sharp. Slices tomatoes like they are not even there. Worth every bit of the eight dollars."</blockquote>
-        <div class="who"><span class="avatar">DR</span><div><div class="name">Danielle Rourke</div><div class="loc">Home Cook, Louisville</div></div></div>
-      </article>
-      <article class="review reveal d1">
-        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>"I run a small catering kitchen. Mike keeps all our knives running and the turnaround is quick. Honest, local, and reliable."</blockquote>
-        <div class="who"><span class="avatar">MC</span><div><div class="name">Marcus Cole</div><div class="loc">Caterer, St. Matthews</div></div></div>
-      </article>
-      <article class="review reveal d2">
-        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <blockquote>"Brought in a pair of garden shears I was ready to toss. They cut like new now. Friendly service and fair pricing."</blockquote>
-        <div class="who"><span class="avatar">PB</span><div><div class="name">Priya Banerjee</div><div class="loc">Gardener, Highlands</div></div></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ================= TIPS ================= -->
-<section class="tips" id="tips">
-  <div class="wrap tips-inner">
-    <div class="tips-photo reveal"><img src="https://images.unsplash.com/photo-1604543248368-da42b20dce5b?w=900&q=80" alt="Chef's knives resting on a wooden board" loading="lazy" /></div>
-    <div class="reveal d1">
-      <span class="eyebrow">Pro Blade Care</span>
-      <h2>Keep your edge between visits.</h2>
-      <div class="tip-item"><span class="tn">01</span><div><h3>Clean and dry before drop-off</h3><p>Wipe tools down so we can inspect the true edge and give you the best result.</p></div></div>
-      <div class="tip-item"><span class="tn">02</span><div><h3>Use wood cutting boards</h3><p>Wood and soft plastic protect your edge. Glass and stone boards dull a blade fast.</p></div></div>
-      <div class="tip-item"><span class="tn">03</span><div><h3>Store in blocks or magnetic racks</h3><p>Loose in a drawer, blades knock together and chip. Give each one a home.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CONTACT ================= -->
-<section class="contact" id="contact">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Get In Touch</span>
+    <div>
       <h2>Ready for a sharper edge?</h2>
-      <p>Send a note about what you need sharpened and we will get right back to you with timing and details.</p>
+      <p>Book online in under a minute, or send us a note.</p>
     </div>
-    <div class="contact-grid">
-      <div class="reveal">
-        <div class="contact-detail"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg></span><div><div class="lbl">Phone</div><a class="val" href="tel:5022961815">502-296-1815</a></div></div>
-        <div class="contact-detail"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span><div><div class="lbl">Email</div><a class="val" href="mailto:info@sharpshop.com">info@sharpshop.com</a></div></div>
-        <div class="contact-detail"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><div class="lbl">Hours</div><div class="val">Tue &ndash; Sat, 9am to 5pm</div></div></div>
-        <div class="contact-detail"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><div class="lbl">Location</div><div class="val">Louisville, KY <!-- TODO: add full street address --></div></div></div>
-      </div>
-
-      <form class="card reveal d1" onsubmit="return handleSubmit(event)">
-        <div class="form-row">
-          <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required /></div>
-          <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="Best number to reach you" autocomplete="tel" /></div>
-        </div>
-        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required /></div>
-        <div class="field"><label for="service">What needs sharpening?</label>
-          <select id="service" name="service" autocomplete="off">
-            <option>Kitchen knives</option>
-            <option>Scissors &amp; shears</option>
-            <option>Garden &amp; outdoor tools</option>
-            <option>Drill bits</option>
-            <option>Repair or restoration</option>
-            <option>Something else</option>
-          </select>
-        </div>
-        <div class="field"><label for="message">Details</label><textarea id="message" name="message" placeholder="How many items, and anything we should know" autocomplete="off"></textarea></div>
-        <button type="submit" class="btn btn-primary">Send Request</button>
-        <p class="form-note">We usually reply the same business day.</p>
-      </form>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="book.html" class="btn btn-primary">Book Online</a>
+      <a href="contact.html" class="btn btn-outline-light">Contact Us</a>
     </div>
   </div>
 </section>
@@ -206,11 +118,11 @@
       </div>
       <div>
         <h4>Explore</h4>
-        <ul><li><a href="index.html#services">Services</a></li><li><a href="book.html">Book Online</a></li><li><a href="blog.html">Blog</a></li><li><a href="index.html#tips">Care Tips</a></li></ul>
+        <ul><li><a href="services.html">Services</a></li><li><a href="process.html">How It Works</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="tips.html">Care Tips</a></li><li><a href="book.html">Book Online</a></li><li><a href="blog.html">Blog</a></li></ul>
       </div>
       <div>
         <h4>Account</h4>
-        <ul><li><a href="signin.html">Sign In</a></li><li><a href="index.html#reviews">Reviews</a></li><li><a href="index.html#contact">Contact</a></li></ul>
+        <ul><li><a href="signin.html">Sign In</a></li><li><a href="contact.html">Contact</a></li></ul>
       </div>
     </div>
     <div class="foot-legal">

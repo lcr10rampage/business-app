@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sign In | Mike's Sharp Shop</title>
-<meta name="description" content="Sign in to your Mike's Sharp Shop account to manage bookings and see order notifications." />
+<title>Care Tips | Mike's Sharp Shop</title>
+<meta name="description" content="Pro blade care tips from Mike's Sharp Shop: clean and dry before drop-off, use wood cutting boards, and store knives in blocks or magnetic racks." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -44,20 +44,37 @@
   <a href="book.html" class="btn btn-primary">Book Online</a>
 </div>
 
-<!-- ================= AUTH ================= -->
-<section class="auth" style="padding-top:calc(72px + clamp(3rem,7vw,6rem));">
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero" id="top">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1604543248368-da42b20dce5b?w=1800&q=80')"></div>
+  <div class="wrap page-hero-inner">
+    <span class="eyebrow reveal">Pro Blade Care</span>
+    <h1 class="reveal d1">Keep your edge between visits.</h1>
+    <p class="reveal d2">A sharp edge lasts a lot longer with a little care. Three habits make most of the difference.</p>
+  </div>
+</section>
+
+<!-- ================= TIPS ================= -->
+<section class="tips">
+  <div class="wrap tips-inner">
+    <div class="tips-photo reveal"><img src="https://images.unsplash.com/photo-1604543248368-da42b20dce5b?w=900&q=80" alt="Chef's knives resting on a wooden board" loading="lazy" /></div>
+    <div class="reveal d1">
+      <span class="eyebrow">Three Habits</span>
+      <h2>Small steps, sharper tools.</h2>
+      <div class="tip-item"><span class="tn">01</span><div><h3>Clean and dry before drop-off</h3><p>Wipe tools down so we can inspect the true edge and give you the best result.</p></div></div>
+      <div class="tip-item"><span class="tn">02</span><div><h3>Use wood cutting boards</h3><p>Wood and soft plastic protect your edge. Glass and stone boards dull a blade fast.</p></div></div>
+      <div class="tip-item"><span class="tn">03</span><div><h3>Store in blocks or magnetic racks</h3><p>Loose in a drawer, blades knock together and chip. Give each one a home.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BAND ================= -->
+<section class="cta-band cut-both">
   <div class="wrap">
-    <div class="auth-card reveal">
-      <span class="eyebrow">Account Access</span>
-      <h1 style="margin-top:0.6rem;">Sign In</h1>
-      <p>Sign in to manage your bookings and see order notifications when your blades are ready for pickup.</p>
-      <form onsubmit="return handleSubmit(event)">
-        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required /></div>
-        <div class="field"><label for="password">Password</label><input id="password" name="password" type="password" placeholder="Your password" autocomplete="current-password" required /></div>
-        <button type="submit" class="btn btn-primary">Sign In</button>
-      </form>
-      <p class="auth-alt">New here? <a href="book.html">Book online</a> to create your account.</p>
-      <p class="auth-note">Accounts and notifications are part of the online booking system. Not set up yet, so this form is a placeholder.</p>
+    <div><h2>Time for a proper sharpen?</h2><p>Care goes far, but every edge needs the stone eventually.</p></div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="book.html" class="btn btn-primary">Book Online</a>
+      <a href="blog.html" class="btn btn-outline-light">Read the Blog</a>
     </div>
   </div>
 </section>

@@ -40,7 +40,18 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; background: var(--concrete); }
+
+/* ---------- Cross-page transitions (match tao site) ---------- */
+/* Modern browsers: native cross-document crossfade, no white flash. */
+@view-transition { navigation: auto; }
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 0.4s; }
+/* Fallback for browsers without View Transitions: fade to the page
+   background color (never white) on leave, fade in on arrive. */
+@keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
+html.no-vt body { animation: pageIn 0.5s var(--ease) both; }
+html.no-vt body.is-leaving { opacity: 0 !important; transition: opacity 0.34s var(--ease); animation: none !important; }
 
 body {
   font-family: "Inter", system-ui, sans-serif;
@@ -470,10 +481,44 @@ footer ul a:hover { color: var(--ember); }
   .foot-legal { flex-direction: column; }
 }
 
+/* ---------- Home teaser grid ---------- */
+.teaser-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.1rem; }
+.teaser-grid .svc-feature { grid-row: span 3; }
+.svc-card.teaser {
+  text-decoration: none; color: inherit;
+  flex-direction: row; align-items: center; gap: 1.2rem;
+}
+.svc-card.teaser .t-body { flex: 1; }
+.svc-card.teaser h3 { font-size: 1.4rem; margin-bottom: 0.25rem; }
+.svc-card.teaser p { font-size: 0.98rem; }
+.svc-card.teaser .arrow {
+  font-family: "Oswald", sans-serif; font-weight: 700; color: var(--ember-deep);
+  font-size: 1.6rem; transition: transform var(--t-fast);
+}
+.svc-card.teaser:hover .arrow { transform: translateX(5px); }
+.svc-feature.teaser { flex-direction: column; align-items: flex-start; }
+
+/* CTA band shared across sub-pages */
+.cta-band { background: var(--graphite); color: #fff; }
+.cta-band .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+.cta-band h2 { color: #fff; font-size: clamp(1.8rem, 4vw, 2.8rem); }
+.cta-band p { color: rgba(255,255,255,0.75); margin-top: 0.5rem; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .teaser-grid { grid-template-columns: 1fr; }
+  .teaser-grid .svc-feature { grid-row: auto; }
+}
+@media (max-width: 520px) {
+  .svc-card.teaser { flex-direction: column; align-items: flex-start; }
+}
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; }
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   .svc-card:hover, .post-card:hover, .book-card:hover, .btn:active { transform: none; }
   #drawer, header#nav { transition: none; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
+  html.no-vt body { animation: none !important; }
 }

@@ -36,6 +36,25 @@
   drawer.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
 })();
 
+// Cross-page fade fallback (only for browsers without native View Transitions).
+// Modern browsers use the CSS @view-transition crossfade; this fades to the
+// page background color, never white.
+(function () {
+  if ('startViewTransition' in document) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href.charAt(0) === '#' || a.target === '_blank' || /^(mailto:|tel:|https?:)/i.test(href)) return;
+    e.preventDefault();
+    if (reduce) { window.location.href = href; return; }
+    document.body.classList.add('is-leaving');
+    setTimeout(function () { window.location.href = href; }, 320);
+  });
+  window.addEventListener('pageshow', function () { document.body.classList.remove('is-leaving'); });
+})();
+
 // Demo form handler (no backend wired yet)
 function handleSubmit(e) {
   e.preventDefault();
