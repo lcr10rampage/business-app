@@ -1,0 +1,192 @@
+[
+ {
+  "path": "assets/img/header.jpg",
+  "name": "header.jpg",
+  "md5": "b83395ce0c6d5df3910de5800158f1f7"
+ },
+ {
+  "path": "assets/img/taichi.jpg",
+  "name": "taichi.jpg",
+  "md5": "e616e829b099e4f4a0abd410691be68c"
+ },
+ {
+  "path": "assets/img/events-retreat.jpg",
+  "name": "events-retreat.jpg",
+  "md5": "39f6f7a68027692b6cb861a4e5ea4397"
+ },
+ {
+  "path": "assets/img/meditation.jpg",
+  "name": "meditation.jpg",
+  "md5": "760427ba14c90d3ae2e899a5dec3d213"
+ },
+ {
+  "path": "assets/img/chineitsang.jpg",
+  "name": "chineitsang.jpg",
+  "md5": "e570c8a167ae98da3a46c8304315aa5c"
+ },
+ {
+  "path": "assets/img/book-taoteching.jpg",
+  "name": "book-taoteching.jpg",
+  "md5": "b84cb61051e4d712b5d870af826a9a44"
+ },
+ {
+  "path": "assets/img/book-workforce.jpg",
+  "name": "book-workforce.jpg",
+  "md5": "acbedbbca89680d9ce24b5a88873db52"
+ },
+ {
+  "path": "assets/img/events-meditation.jpg",
+  "name": "events-meditation.jpg",
+  "md5": "e4edac28dc96261a54179409e55ca977"
+ },
+ {
+  "path": "assets/img/events-ironshirt.jpg",
+  "name": "events-ironshirt.jpg",
+  "md5": "010a1c6f0ed7ed254d67860676ff1bbd"
+ },
+ {
+  "path": "assets/img/posts/calm-energy.jpg",
+  "name": "calm-energy.jpg",
+  "md5": "448ddff919cbd68505942214efa8fcdd"
+ },
+ {
+  "path": "assets/img/posts/chronic-stimulation.jpg",
+  "name": "chronic-stimulation.jpg",
+  "md5": "d15ecf0b94dac8f3fea0b4d499d36a03"
+ },
+ {
+  "path": "assets/img/posts/five-minute-stillness-practice.jpg",
+  "name": "five-minute-stillness-practice.jpg",
+  "md5": "de488b19d95b9d0260013a3bd3c64a4b"
+ },
+ {
+  "path": "assets/img/posts/flowing-with-the-seasons.jpg",
+  "name": "flowing-with-the-seasons.jpg",
+  "md5": "637d4835f565b13802f1aa9698eb139a"
+ },
+ {
+  "path": "assets/img/posts/gradual-meditation.jpg",
+  "name": "gradual-meditation.jpg",
+  "md5": "85312c2be190692311d72a3dafcd3632"
+ },
+ {
+  "path": "assets/img/posts/internal-alchemy.jpg",
+  "name": "internal-alchemy.jpg",
+  "md5": "1d279ddcdd40af32917bf813c667c24a"
+ },
+ {
+  "path": "assets/img/posts/living-above-the-neck.jpg",
+  "name": "living-above-the-neck.jpg",
+  "md5": "83b521d9fb8d8d6f58b4854df5371974"
+ },
+ {
+  "path": "assets/img/posts/meditation-and-restlessness.jpg",
+  "name": "meditation-and-restlessness.jpg",
+  "md5": "d08a2e58561dbbe2571b199ca7ccaca8"
+ },
+ {
+  "path": "assets/img/posts/modern-nervous-system.jpg",
+  "name": "modern-nervous-system.jpg",
+  "md5": "591cd754f333328194059069e3025a8c"
+ },
+ {
+  "path": "assets/img/posts/spring-and-the-liver.jpg",
+  "name": "spring-and-the-liver.jpg",
+  "md5": "23d763769bc59e6615ec7a91aeb2bd3b"
+ },
+ {
+  "path": "assets/img/posts/staying-centered.jpg",
+  "name": "staying-centered.jpg",
+  "md5": "a8b180ed0151761ac198bf69ee8b977f"
+ },
+ {
+  "path": "assets/img/posts/taoist-dreaming.jpg",
+  "name": "taoist-dreaming.jpg",
+  "md5": "0a3c08ac6e1170a58d883a772e56035d"
+ },
+ {
+  "path": "assets/img/posts/the-body-knows.jpg",
+  "name": "the-body-knows.jpg",
+  "md5": "707600f1689795ba26f5d8075b942cf2"
+ },
+ {
+  "path": "assets/img/posts/the-modern-stress-paradigm.jpg",
+  "name": "the-modern-stress-paradigm.jpg",
+  "md5": "ab7f03770c7b7372844d522394e1cc5c"
+ },
+ {
+  "path": "assets/img/posts/where-should-i-start.jpg",
+  "name": "where-should-i-start.jpg",
+  "md5": "f4ae186fdee5a489ecc5806757f04ec3"
+ },
+ {
+  "path": "assets/icons/check.svg",
+  "name": "check.svg",
+  "md5": "2a0977d463d0d51f2b112ea0cff51434"
+ },
+ {
+  "path": "assets/icons/clock.svg",
+  "name": "clock.svg",
+  "md5": "219dbec71566532b5f6fa11f2cf14fcc"
+ },
+ {
+  "path": "assets/icons/frame.svg",
+  "name": "frame.svg",
+  "md5": "73bcccf4c3f183cb9b9c58117ae44fe4"
+ },
+ {
+  "path": "assets/icons/mail.svg",
+  "name": "mail.svg",
+  "md5": "c26e519b9002a2596a0764af9ad03984"
+ },
+ {
+  "path": "assets/icons/pin.svg",
+  "name": "pin.svg",
+  "md5": "45d593ccf8cc3d5ca3d4ea493e7015f5"
+ },
+ {
+  "path": "assets/icons/plus.svg",
+  "name": "plus.svg",
+  "md5": "ae4621982332966154d60e1f393b8f7e"
+ },
+ {
+  "path": "assets/icons/stars.svg",
+  "name": "stars.svg",
+  "md5": "012af7432ef31cdec3dddb028fe7b07a"
+ },
+ {
+  "path": "assets/pdf/Meditation-is-Like-Work.pdf",
+  "name": "Meditation-is-Like-Work.pdf",
+  "md5": "c8e8880ad228f558e4934103d7a24e1c"
+ },
+ {
+  "path": "assets/pdf/Mental-Health-and-Organizational-Support.pdf",
+  "name": "Mental-Health-and-Organizational-Support.pdf",
+  "md5": "bf49fe767e1359577942b1b23ebbf2ca"
+ },
+ {
+  "path": "assets/pdf/Qigong-and-Tai-Chi-writeup.pdf",
+  "name": "Qigong-and-Tai-Chi-writeup.pdf",
+  "md5": "246727917b175a952e2859992b6eaca2"
+ },
+ {
+  "path": "assets/pdf/Relaxation-Is-a-Skill-Most-Adults-Never-Learn.pdf",
+  "name": "Relaxation-Is-a-Skill-Most-Adults-Never-Learn.pdf",
+  "md5": "91c6fd85801799d6307a0d11415071ab"
+ },
+ {
+  "path": "assets/pdf/The-Hidden-Cost-of-Constant-Readiness.pdf",
+  "name": "The-Hidden-Cost-of-Constant-Readiness.pdf",
+  "md5": "3972803adf43640d6e240117f51940e0"
+ },
+ {
+  "path": "assets/pdf/Why-Calm-Is-Not-a-Personality-Trait.pdf",
+  "name": "Why-Calm-Is-Not-a-Personality-Trait.pdf",
+  "md5": "570a57b9325b7276d679ada7964f459a"
+ },
+ {
+  "path": "assets/pdf/Why-Effort-Fails-When-You-Are-Already-Tired.pdf",
+  "name": "Why-Effort-Fails-When-You-Are-Already-Tired.pdf",
+  "md5": "00e64aea546d455ab7b2aff24b1a0c5d"
+ }
+]

@@ -1,0 +1,120 @@
+{
+ "site": "6ac1539dd172eb63b02331f3",
+ "components": {
+  "site-header": "f793b48c-4f10-67f3-bada-4fa3f8d18c38",
+  "site-footer": "49e5a02b-71c9-92ed-0055-fe892f2b6c9f"
+ },
+ "collections": {
+  "writings": "6ac15c0141820496aa6fb3e6",
+  "articles": "6ac15c021d9b31e0a673a0e2"
+ },
+ "pages": {
+  "home": {
+   "page": "6ac1539fd172eb63b02331fe",
+   "body": "6ac1539fd172eb63b0233203",
+   "pagebody": "a564381d-18e6-582d-4786-eb4ec577f9fc"
+  },
+  "writings": {
+   "page": "6ac15cbab6c7e6334ad940f7",
+   "body": "6ac15cbab6c7e6334ad940fd",
+   "pagebody": "8fe8c1e6-62e0-82c0-f3b3-2e7161a116c3"
+  },
+  "articles": {
+   "page": "6ac15cba9185708c9a162325",
+   "body": "6ac15cba9185708c9a16232b",
+   "pagebody": "7a5fe395-e3d2-fb0a-7168-68b2ccffec8b"
+  },
+  "courses": {
+   "page": "6ac15cbae7ca0ce7e61f9611",
+   "body": "6ac15cbae7ca0ce7e61f9617",
+   "pagebody": "686c7954-e1f8-3b29-10dc-66b9b484e3bb"
+  },
+  "events": {
+   "page": "6ac15cbbcb63710fb805542f",
+   "body": "6ac15cbbcb63710fb8055436",
+   "pagebody": "76e318e5-b2ff-0d6e-a9aa-a40edf6d74ed"
+  },
+  "about": {
+   "page": "6ac15cbb1d9b31e0a673c468",
+   "body": "6ac15cbb1d9b31e0a673c46e",
+   "pagebody": "753297f9-ec17-15ed-38f1-a5a043baa509"
+  },
+  "faq": {
+   "page": "6ac15cbce34a76067465acb7",
+   "body": "6ac15cbce34a76067465acbd",
+   "pagebody": "e8fa1aca-bc6d-5ad9-4322-ad17bba0c4ae"
+  },
+  "contact": {
+   "page": "6ac15cbc08946011197a89fc",
+   "body": "6ac15cbc08946011197a8a02",
+   "pagebody": "df24c880-ed37-7bf2-09c3-da01dc5b0e06"
+  },
+  "writing-template": {
+   "page": "6ac15c0141820496aa6fb3ec",
+   "body": "6ac15c0141820496aa6fb3f4",
+   "pagebody": "4f81811e-9a55-94d0-9332-14a94986abaa"
+  },
+  "article-template": {
+   "page": "6ac15c021d9b31e0a673a0e8",
+   "body": "6ac15c021d9b31e0a673a0f0",
+   "pagebody": "45846d26-e30d-b477-8050-c61719fee3bc"
+  }
+ },
+ "writings_fields": {
+  "topic-1": "ade187b8cb62411dc5486605ff098ff9",
+  "topic-2": "9e2a67bfa11e218821f5e83f4c00c70f",
+  "topic-3": "8d6fd9762df8b6265cf4cfcd1096b7d8",
+  "slug": "6a39c92d414a5c8624632cb5a8c12004",
+  "name": "6105639e19dc35ac471939931017e922",
+  "excerpt": "6b5169a0693d331c4922941075544f74",
+  "kind": "789dd401f8ef6bec249437067737c59c",
+  "published-on-2": "03c6fb80f1b62b22fde4b05b31c45e65",
+  "cover-image": "a197ce8d951bc20de3776095157b24cb",
+  "body": "da4355357ef14f37f4933cf5e525d41b",
+  "featured": "276ec2688d45099009259b9c7d494b82"
+ },
+ "topic_options": {
+  "topic-1": {
+   "Organs": "1db4e7f4a4373dfe80ac5df7ef5982f7",
+   "Tao Te Ching": "028977f303dfda532e98e57109937f83",
+   "Chi": "54084a31306bdc2068b067997f9b9d3b",
+   "Tai chi & qigong": "7c6b96993f3f33189b2b24474c587a44",
+   "Verses": "0ca8256de2c73c7cf13c3075546987dd",
+   "Meditation": "91ab8e40c90415779108265695584712",
+   "Breath": "02a0ecc15babab70c40830d3554caf5b",
+   "Stress & sleep": "a403a1550008c78bef0a295a9f29d586",
+   "Emotions": "00609135cfe8410e953d08ebfaa6ccc3",
+   "Healing practices": "2f4c998d321afda99173ae89848b27f2",
+   "Seasons": "6fdcf9400a405ff3c58ff8636c6efb04",
+   "Letting go": "684ff51f89142298ab13a2f19d8d57ae"
+  },
+  "topic-2": {
+   "Organs": "a6005e168158fdb7a43de7f4a2165b6d",
+   "Tao Te Ching": "bf3465cea24bfa5eb06fbe2f451751d8",
+   "Chi": "e34c1f79656221edd9954b0d9dacbe7a",
+   "Tai chi & qigong": "50f907068670e701dc53278d486fd592",
+   "Verses": "420e27f31f606caac850990c555a014a",
+   "Meditation": "1fe768ddb7fc027854ad3c46054fa758",
+   "Breath": "38fc0b02a7ff18e021a0900ba81718fb",
+   "Stress & sleep": "205104543af75ef4e296f76fa32fc2c4",
+   "Emotions": "085622b0d273e2284a2aedf990c8ab4c",
+   "Healing practices": "ecf179a7b98867bc446aeadeb0b80a57",
+   "Seasons": "4508f8f1c05e1782559ef9cd3b0bc10e",
+   "Letting go": "aa25cdaf46fe10dc3a66a90efbec0e21"
+  },
+  "topic-3": {
+   "Organs": "e39b74bb2940882b1b27be8fa84d30a2",
+   "Tao Te Ching": "68af0d44285a1f703c8897854ffa31d7",
+   "Chi": "5f02ab51e15e15cf1dc5fcd4cdcf5b2e",
+   "Tai chi & qigong": "224e6eb4c3b79b3dc785c916ab0c9658",
+   "Verses": "76e520edafb218380cf1e2fcf79f6d17",
+   "Meditation": "2ab8f9fe8b68d29207f23815619134cd",
+   "Breath": "a81d8ceaf9c2c99c75d42b9f5142e291",
+   "Stress & sleep": "f24f9d2142b7585865351b336efd50ba",
+   "Emotions": "d314152762338c4252e24a25005dbcf2",
+   "Healing practices": "c139dbad9299b5127eaed2feb73d88d1",
+   "Seasons": "8e6061b7cf9f874117e47d1b2de23f86",
+   "Letting go": "c85d97f549afc4d07e628bcf88e0c6f7"
+  }
+ }
+}

@@ -1,0 +1,33 @@
+/* Hover / focus / placeholder states. Each rule is ONE flat class + ONE
+   pseudo-class, so each maps to a Webflow class's Hover/Focus state
+   (data_style_tool pseudo). Applied AFTER the build, never in a WHTML payload. */
+.btn-primary:hover { background-color:var(--teal-900); transform:translate(0px,-2px); box-shadow:0 20px 50px -24px rgba(15,52,70,0.35); }
+.btn-nav:hover { background-color:var(--teal-900); transform:translate(0px,-2px); box-shadow:0 20px 50px -24px rgba(15,52,70,0.35); }
+.btn-submit:hover { background-color:var(--teal-900); transform:translate(0px,-2px); box-shadow:0 20px 50px -24px rgba(15,52,70,0.35); }
+.btn-ghost:hover { background-color:rgba(255,255,255,0.12); transform:translate(0px,-2px); }
+.btn-outline:hover { border-top-color:var(--teal-800); border-bottom-color:var(--teal-800); border-left-color:var(--teal-800); border-right-color:var(--teal-800); transform:translate(0px,-2px); }
+.nav-link:hover { color:var(--white); background-size:100% 1.5px; }
+.crumb-link:hover { color:var(--white); }
+.foot-link:hover { color:var(--accent); }
+.feature:hover { transform:translate(0px,-4px); box-shadow:0 40px 90px -40px rgba(15,52,70,0.45); }
+.feature-wide:hover { transform:translate(0px,-4px); box-shadow:0 40px 90px -40px rgba(15,52,70,0.45); }
+.post:hover { padding-left:0.5rem; }
+.idx-item:hover { padding-left:0.4rem; }
+.card:hover { transform:translate(0px,-4px); box-shadow:0 20px 50px -24px rgba(15,52,70,0.35); }
+.voice:hover { transform:translate(0px,-4px); box-shadow:0 20px 50px -24px rgba(15,52,70,0.35); }
+.form-input:focus { outline-style:none; border-top-color:var(--teal-600); border-bottom-color:var(--teal-600); border-left-color:var(--teal-600); border-right-color:var(--teal-600); background-color:var(--white); box-shadow:0 0 0 3px rgba(47,111,143,0.14); }
+.form-textarea:focus { outline-style:none; border-top-color:var(--teal-600); border-bottom-color:var(--teal-600); border-left-color:var(--teal-600); border-right-color:var(--teal-600); background-color:var(--white); box-shadow:0 0 0 3px rgba(47,111,143,0.14); }
+.form-select:focus { outline-style:none; border-top-color:var(--teal-600); border-bottom-color:var(--teal-600); border-left-color:var(--teal-600); border-right-color:var(--teal-600); background-color:var(--white); box-shadow:0 0 0 3px rgba(47,111,143,0.14); }
+
+/* blog */
+.bcard:hover { transform:translate(0px,-3px); box-shadow:0 22px 44px -26px rgba(15,52,70,0.45); }
+.bcard:focus-visible { outline-style:solid; outline-width:2px; outline-color:#0b7fa8; outline-offset:3px; }
+.blog-again:hover { background-color:var(--paper-2); }
+.post-topic:hover { background-color:var(--paper-2); }
+.river-btn:hover { background-color:var(--paper-2); }
+.river-year:focus-visible { outline-style:solid; outline-width:2px; outline-color:#0b7fa8; outline-offset:4px; }
+.side-item:hover { background-color:var(--paper-2); }
+.lib-pill:hover { background-color:var(--teal-900); }
+.fold-toggle:hover { background-color:var(--paper-2); }
+.lib-burger:hover { background-color:var(--paper-2); }
+.blog-pick-title:hover { color:var(--teal-800); }

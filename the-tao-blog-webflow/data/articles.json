@@ -1,0 +1,58 @@
+[
+  {
+    "name": "The Hidden Cost of Constant Readiness",
+    "slug": "the-hidden-cost-of-constant-readiness",
+    "summary": "The nervous system braced for everything pays a quiet, compounding price over time.",
+    "kind": "Essay",
+    "pdf": "assets/pdf/The-Hidden-Cost-of-Constant-Readiness.pdf",
+    "display-order": 1
+  },
+  {
+    "name": "Why Effort Fails When You Are Already Tired",
+    "slug": "why-effort-fails-when-you-are-already-tired",
+    "summary": "Pushing harder from a place of depletion rarely produces what genuine rest would.",
+    "kind": "Essay",
+    "pdf": "assets/pdf/Why-Effort-Fails-When-You-Are-Already-Tired.pdf",
+    "display-order": 2
+  },
+  {
+    "name": "Relaxation Is a Skill Most Adults Never Learn",
+    "slug": "relaxation-is-a-skill-most-adults-never-learn",
+    "summary": "We treat rest as a switch to flip. It is much closer to a practice we build.",
+    "kind": "Essay",
+    "pdf": "assets/pdf/Relaxation-Is-a-Skill-Most-Adults-Never-Learn.pdf",
+    "display-order": 3
+  },
+  {
+    "name": "Why Calm Is Not a Personality Trait",
+    "slug": "why-calm-is-not-a-personality-trait",
+    "summary": "Calm is trainable. It is a state the body can be taught to find and return to.",
+    "kind": "Essay",
+    "pdf": "assets/pdf/Why-Calm-Is-Not-a-Personality-Trait.pdf",
+    "display-order": 4
+  },
+  {
+    "name": "Qigong and Tai Chi",
+    "slug": "qigong-and-tai-chi",
+    "summary": "An overview of the moving practices, and where a beginner can sensibly begin.",
+    "kind": "Guide",
+    "pdf": "assets/pdf/Qigong-and-Tai-Chi-writeup.pdf",
+    "display-order": 5
+  },
+  {
+    "name": "Meditation is Like Work",
+    "slug": "meditation-is-like-work",
+    "summary": "Showing up matters more than intensity. The best session is the one you actually do.",
+    "kind": "Reflection",
+    "pdf": "assets/pdf/Meditation-is-Like-Work.pdf",
+    "display-order": 6
+  },
+  {
+    "name": "Mental Health and Organizational Support",
+    "slug": "mental-health-and-organizational-support",
+    "summary": "How workplaces quietly shape the nervous systems of the people inside them.",
+    "kind": "Leadership",
+    "pdf": "assets/pdf/Mental-Health-and-Organizational-Support.pdf",
+    "display-order": 7
+  }
+]

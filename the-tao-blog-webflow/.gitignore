@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+# Webflow upload responses carry signed storage credentials
+asset-create-results.json
+# WordPress picture archive (489 MB) and thumbnails made from it; kept on the VM only
+assets/wp-import/
+assets/wp-thumbs/
