@@ -69,8 +69,9 @@ python3 tools/import_writings.py --skip-duplicates --strip-signature --go   # do
   - 27 posts never had a picture.
   - 133 have pictures only inside the post and no tile picture, so they show a plain tile
     on the Blog page. Chet chose to leave these as they are (2026-10-04).
-- **Backup:** this folder and `assets/wp-import/` (489 MB) are the only copy, on the
-  agent-runtime VM. They are not in git or Drive.
+- **Backup:** the posts and code are in git (business-app, branch `tao-blog-webflow`).
+  The pictures in `assets/wp-import/` (489 MB) are left out of git and exist only on the
+  agent-runtime VM.
 
 ## Running it
 
